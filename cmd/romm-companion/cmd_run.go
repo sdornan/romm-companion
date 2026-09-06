@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/sdornan/romm-companion/internal/config"
-	"github.com/sdornan/romm-companion/internal/emulator"
 	"github.com/sdornan/romm-companion/internal/notify"
 	"github.com/sdornan/romm-companion/internal/reconcile"
 	"github.com/sdornan/romm-companion/internal/romm"
@@ -111,13 +110,13 @@ func newEngine(ctx context.Context, cfg *config.Config) (*reconcile.Engine, erro
 		return nil, err
 	}
 	client := romm.New(cfg.ServerURL, cfg.Token, version)
-	resolver := emulator.NewResolver(cfg.Templates, coreMap)
+	resolver := newResolver(cfg, coreMap)
 
 	// Best-effort: an older server without the column still runs the queue.
 	reportCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
 	defer cancel()
 	if err := client.ReportCapabilities(
-		reportCtx, cfg.DeviceID, resolver.Capabilities(platformSlugs(cfg, coreMap)),
+		reportCtx, cfg.DeviceID, resolver.Capabilities(platformSlugs(cfg, coreMap, resolver)),
 	); err != nil {
 		fmt.Fprintln(os.Stderr, "could not report playable platforms:", err)
 	}

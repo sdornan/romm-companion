@@ -106,8 +106,8 @@ With two or more paired devices the button opens a picker. Settings, Devices get
 Three layers. Two are answered by data that already exists; the third is a scan of the local machine.
 
 1. **Platform to RetroArch core.** RomM's EmulatorJS core map keys libretro core names on platform slugs. Desktop RetroArch uses the same names, so the default command for every browser-playable platform is `retroarch -L <cores>/<core>_libretro.<ext> "<rom>"`. The companion reads the map from `GET /api/config` and caches the last good copy, so a launch still resolves offline.
-2. **Platform to standalone emulator.** ES-DE's `es_systems.xml` covers about 150 systems per OS with labelled alternatives and `%ROM%`, `%EMULATOR_RETROARCH%`, `%CORE_RETROARCH%` placeholders. MIT licensed. The companion ships a translated copy, refreshed each release, joined to RomM slugs by the mapping RomM's ES-DE gamelist exporter already uses.
-3. **Emulator to a path on this PC.** ES-DE's `es_find_rules.xml` lists where each emulator lives per OS. The companion walks the rules on first run and on demand.
+2. **Platform to standalone emulator.** ES-DE's `es_systems.xml` covers 195 systems per OS with labelled alternatives in preference order. MIT licensed. `tools/gen-esde` translates a pinned release into a per-OS table joined to RomM slugs by the alias map RomM's ES-DE gamelist exporter already uses, keeping roughly 120 platforms. Alternatives that need placeholders the launcher cannot honour, and the "Shortcut or script" entry that would run a ROM as a program, are dropped rather than launched wrong.
+3. **Emulator to a path on this PC.** ES-DE's `es_find_rules.xml` lists where each emulator lives per OS: names to try on PATH, then glob patterns for the usual install locations. The companion walks the rules on demand and memoises the answer, since one emulator serves many platforms.
 
 Resolution order per platform: the user's explicit template; a detected standalone, taking ES-DE's first-listed alternative found on disk; RetroArch with the core from RomM's map; the web player; none. Multi-disc games pass the `.m3u` or `.cue`, never a bare `.bin`.
 

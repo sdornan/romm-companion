@@ -3,8 +3,8 @@
 //
 // Resolution order, first match wins:
 //  1. the user's explicit template for the platform
-//  2. a detected standalone emulator (not yet implemented; sourced from ES-DE's
-//     system definitions and find rules in a later change)
+//  2. a detected standalone emulator, from ES-DE's system definitions and
+//     emulator find rules
 //  3. RetroArch with the core RomM's own core map names for the platform
 //  4. the RomM web player in an app-mode browser
 //  5. nothing, which the capability report surfaces to RomM
@@ -13,8 +13,11 @@ package emulator
 import (
 	"fmt"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"strings"
+
+	"github.com/sdornan/romm-companion/internal/emulator/esde"
 )
 
 // Resolution is what the companion reports to RomM as launch_capabilities and
@@ -24,8 +27,11 @@ type Resolution struct {
 	Kind string
 	// Descriptor is the short form sent to RomM, e.g. "retroarch:snes9x".
 	Descriptor string
-	// Command is the shell-free argv template. %ROM% is replaced at launch.
+	// Command is the shell-free argv template. %ROM%, %BASENAME% and
+	// %GAMEDIR% are replaced at launch.
 	Command []string
+	// WorkDir is the directory to run in, empty for the caller's own.
+	WorkDir string
 }
 
 // Supported reports whether a launch is possible.
@@ -44,13 +50,27 @@ type Resolver struct {
 	CoreDir string
 	// WebPlayerURL, when set, enables the web player fallback for every platform.
 	WebPlayerURL string
+	// RomRoot is where ROMs are downloaded, standing in for ES-DE's %ROMPATH%.
+	RomRoot string
+	// ESDE holds ES-DE's standalone emulator definitions, nil to skip layer 2.
+	ESDE *esde.Data
+	// Finder locates those emulators on this machine.
+	Finder *esde.Finder
 	// LookPath is exec.LookPath unless replaced in tests.
 	LookPath func(string) (string, error)
 }
 
-// NewResolver detects RetroArch on PATH.
+// NewResolver detects RetroArch on PATH and loads ES-DE's standalone
+// definitions. A table that fails to parse only costs layer 2, so resolution
+// falls through to RetroArch rather than failing.
 func NewResolver(templates map[string]string, cores map[string][]string) *Resolver {
-	r := &Resolver{Templates: templates, Cores: cores, LookPath: exec.LookPath}
+	r := &Resolver{
+		Templates: templates,
+		Cores:     cores,
+		LookPath:  exec.LookPath,
+		Finder:    esde.NewFinder(),
+	}
+	r.ESDE, _ = esde.Load()
 	r.RetroArch = r.findRetroArch()
 	return r
 }
@@ -59,6 +79,9 @@ func NewResolver(templates map[string]string, cores map[string][]string) *Resolv
 func (r *Resolver) Resolve(slug string) Resolution {
 	if t, ok := r.Templates[slug]; ok && strings.TrimSpace(t) != "" {
 		return Resolution{Kind: "template", Descriptor: "template", Command: splitTemplate(t)}
+	}
+	if res, ok := r.resolveStandalone(slug); ok {
+		return res
 	}
 	if r.RetroArch != "" {
 		if cores := r.Cores[slug]; len(cores) > 0 {
@@ -74,6 +97,41 @@ func (r *Resolver) Resolve(slug string) Resolution {
 		return Resolution{Kind: "web_player", Descriptor: "web_player"}
 	}
 	return Resolution{}
+}
+
+// resolveStandalone takes ES-DE's first-listed alternative whose emulator is
+// installed here. %EMUDIR% and %ROMPATH% are substituted now because both are
+// known; the per-ROM placeholders are left for the launcher.
+func (r *Resolver) resolveStandalone(slug string) (Resolution, bool) {
+	if r.ESDE == nil || r.Finder == nil {
+		return Resolution{}, false
+	}
+	for _, alt := range r.ESDE.Systems[slug] {
+		rule, ok := r.ESDE.Emulators[alt.Emulator]
+		if !ok {
+			continue
+		}
+		exe := r.Finder.Find(alt.Emulator, rule)
+		if exe == "" {
+			continue
+		}
+		expand := func(s string) string {
+			s = strings.ReplaceAll(s, "%EMUDIR%", filepath.Dir(exe))
+			return strings.ReplaceAll(s, "%ROMPATH%", r.RomRoot)
+		}
+		cmd := make([]string, 0, len(alt.Args)+1)
+		cmd = append(cmd, exe)
+		for _, a := range alt.Args {
+			cmd = append(cmd, expand(a))
+		}
+		return Resolution{
+			Kind:       "standalone",
+			Descriptor: "standalone:" + strings.ToLower(alt.Emulator),
+			Command:    cmd,
+			WorkDir:    expand(alt.StartDir),
+		}, true
+	}
+	return Resolution{}, false
 }
 
 // Capabilities resolves every platform RomM knows about into the map the

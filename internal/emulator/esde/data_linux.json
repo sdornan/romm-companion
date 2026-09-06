@@ -1,0 +1,4499 @@
+{
+  "source": "ES-DE v3.4.1",
+  "systems": {
+    "3ds": [
+      {
+        "label": "Azahar (Standalone)",
+        "emulator": "AZAHAR",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "AzaharPlus (Standalone)",
+        "emulator": "AZAHARPLUS",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Citra (Standalone)",
+        "emulator": "CITRA",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mandarine (Standalone)",
+        "emulator": "MANDARINE",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Lime3DS (Standalone)",
+        "emulator": "LIME3DS",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Panda3DS (Standalone)",
+        "emulator": "PANDA3DS",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "64dd": [
+      {
+        "label": "Rosalie's Mupen GUI (Standalone)",
+        "emulator": "ROSALIES-MUPEN-GUI",
+        "args": [
+          "--nogui",
+          "-q",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Nintendo 64DD",
+          "%ROM%"
+        ]
+      }
+    ],
+    "acorn-archimedes": [
+      {
+        "label": "MAME [Model A440/1] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/archimedes",
+          "aa4401",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Model A3000] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/archimedes",
+          "aa3000",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Model A310] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/archimedes",
+          "aa310",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Model A540] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/archimedes",
+          "aa540",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "acorn-electron": [
+      {
+        "label": "MAME [Tape] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/electron",
+          "electron64",
+          "-autoboot_delay",
+          "2",
+          "-autoboot_command",
+          "*T.nCH.\"\"n",
+          "-cass1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Diskette DFS] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/electron",
+          "electron64",
+          "-exp",
+          "plus1",
+          "-cart1",
+          "seds",
+          "-autoboot_delay",
+          "2",
+          "-autoboot_command",
+          "*CATnnnnnn*EXEC !BOOTn",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Diskette ADFS] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/electron",
+          "electron64",
+          "-exp",
+          "plus3",
+          "-exp:plus3:fdc:1",
+          "35dd",
+          "-autoboot_delay",
+          "2",
+          "-autoboot_command",
+          "*CATnnnnnn*RUN !BOOTn",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "acpc": [
+      {
+        "label": "CPCemu (Standalone)",
+        "emulator": "CPCEMU",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "~/.CPCemu"
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/amstradcpc",
+          "cpc6128",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "amiga": [
+      {
+        "label": "FS-UAE (Standalone)",
+        "emulator": "FS-UAE",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Amiberry (Standalone)",
+        "emulator": "AMIBERRY",
+        "args": [
+          "--autoload",
+          "%ROM%"
+        ],
+        "start_dir": "%EMUDIR%"
+      },
+      {
+        "label": "FS-UAE (Standalone)",
+        "emulator": "FS-UAE",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Amiberry (Standalone)",
+        "emulator": "AMIBERRY",
+        "args": [
+          "--autoload",
+          "%ROM%"
+        ],
+        "start_dir": "%EMUDIR%"
+      },
+      {
+        "label": "FS-UAE (Standalone)",
+        "emulator": "FS-UAE",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Amiberry (Standalone)",
+        "emulator": "AMIBERRY",
+        "args": [
+          "--autoload",
+          "%ROM%"
+        ],
+        "start_dir": "%EMUDIR%"
+      }
+    ],
+    "amiga-cd32": [
+      {
+        "label": "FS-UAE (Standalone)",
+        "emulator": "FS-UAE",
+        "args": [
+          "--config:amiga-model=CD32",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Amiberry (Standalone)",
+        "emulator": "AMIBERRY",
+        "args": [
+          "--model",
+          "CD32",
+          "--autoload",
+          "%ROM%"
+        ],
+        "start_dir": "%EMUDIR%"
+      }
+    ],
+    "amstrad-gx4000": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/gx4000",
+          "gx4000",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "apple-iigs": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/apple2gs",
+          "apple2gs",
+          "-gameio",
+          "joy",
+          "-flop3",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Software list] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/apple2gs",
+          "apple2gs",
+          "-gameio",
+          "joy",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "appleii": [
+      {
+        "label": "LinApple (Standalone)",
+        "emulator": "LINAPPLE",
+        "args": [
+          "-f",
+          "-b",
+          "--d1",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "apple2",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/apple2",
+          "apple2e",
+          "-gameio",
+          "joy",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "izapple2 (Standalone)",
+        "emulator": "IZAPPLE2",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "arcade": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/arcade",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "-fullscreen",
+          "%BASENAME%"
+        ]
+      },
+      {
+        "label": "Flycast (Standalone)",
+        "emulator": "FLYCAST",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast Dojo (Standalone)",
+        "emulator": "FLYCAST-DOJO",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast (Standalone)",
+        "emulator": "FLYCAST",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast Dojo (Standalone)",
+        "emulator": "FLYCAST-DOJO",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/consolearcade",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "Flycast (Standalone)",
+        "emulator": "FLYCAST",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast Dojo (Standalone)",
+        "emulator": "FLYCAST-DOJO",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen [Sega Saturn] (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "ss",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Play! Arcade (Standalone)",
+        "emulator": "PLAY!",
+        "args": [
+          "--fullscreen",
+          "--arcade",
+          "%GAMEDIR%/%BASENAME%"
+        ]
+      },
+      {
+        "label": "Play! Disc (Standalone)",
+        "emulator": "PLAY!",
+        "args": [
+          "--fullscreen",
+          "--disc",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "RPCS3 ISO (Standalone)",
+        "emulator": "RPCS3",
+        "args": [
+          "--no-gui",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/cps",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "-fullscreen",
+          "%BASENAME%"
+        ]
+      },
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "-fullscreen",
+          "%BASENAME%"
+        ]
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/mame",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "-fullscreen",
+          "%BASENAME%"
+        ]
+      },
+      {
+        "label": "Flycast (Standalone)",
+        "emulator": "FLYCAST",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast Dojo (Standalone)",
+        "emulator": "FLYCAST-DOJO",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "AdvanceMAME (Standalone)",
+        "emulator": "ADVANCEMAME",
+        "args": [
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.advance"
+      },
+      {
+        "label": "Flycast (Standalone)",
+        "emulator": "FLYCAST",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast Dojo (Standalone)",
+        "emulator": "FLYCAST-DOJO",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast (Standalone)",
+        "emulator": "FLYCAST",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast Dojo (Standalone)",
+        "emulator": "FLYCAST-DOJO",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast (Standalone)",
+        "emulator": "FLYCAST",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast Dojo (Standalone)",
+        "emulator": "FLYCAST-DOJO",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "arcadia-2001": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/arcadia",
+          "arcadia",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "astrocade": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/astrocde",
+          "astrocde",
+          "-cart",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "atari-jaguar-cd": [
+      {
+        "label": "BigPEmu",
+        "emulator": "BIGPEMU",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "atari-st": [
+      {
+        "label": "Hatari (Standalone)",
+        "emulator": "HATARI",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "atari-xegs": [
+      {
+        "label": "Atari800 (Standalone)",
+        "emulator": "ATARI800",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "atari2600": [
+      {
+        "label": "Stella (Standalone)",
+        "emulator": "STELLA",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Gopher2600 (Standalone)",
+        "emulator": "GOPHER2600",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Atari 2600",
+          "%ROM%"
+        ]
+      }
+    ],
+    "atari5200": [
+      {
+        "label": "Atari800 (Standalone)",
+        "emulator": "ATARI800",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "atari7800": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/atari7800",
+          "a7800",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "atari800": [
+      {
+        "label": "Atari800 (Standalone)",
+        "emulator": "ATARI800",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "bbcmicro": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/bbcmicro",
+          "bbcb",
+          "-autoboot_delay",
+          "2",
+          "-autoboot_command",
+          "*catnn*exec !bootn",
+          "-analogue",
+          "acornjoy",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "browser": [
+      {
+        "label": "Ruffle (Standalone)",
+        "emulator": "RUFFLE",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Lightspark (Standalone)",
+        "emulator": "LIGHTSPARK",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      }
+    ],
+    "c64": [
+      {
+        "label": "VICE x64sc Accurate (Standalone)",
+        "emulator": "VICE-X64SC",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "casio-pv-1000": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/pv1000",
+          "pv1000",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "colecoadam": [
+      {
+        "label": "MAME [Diskette] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/adam",
+          "adam",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Tape] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/adam",
+          "adam",
+          "-cass1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Cartridge] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/adam",
+          "adam",
+          "-cart1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Software list] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/adam",
+          "adam",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "colecovision": [
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "ColecoVision",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      }
+    ],
+    "commodore-cdtv": [
+      {
+        "label": "FS-UAE (Standalone)",
+        "emulator": "FS-UAE",
+        "args": [
+          "--config:amiga-model=CDTV",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Amiberry (Standalone)",
+        "emulator": "AMIBERRY",
+        "args": [
+          "--model",
+          "CDTV",
+          "--autoload",
+          "%ROM%"
+        ],
+        "start_dir": "%EMUDIR%"
+      }
+    ],
+    "cps1": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/cps1",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "-fullscreen",
+          "%BASENAME%"
+        ]
+      }
+    ],
+    "cps2": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/cps2",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "-fullscreen",
+          "%BASENAME%"
+        ]
+      }
+    ],
+    "cps3": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/cps3",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "-fullscreen",
+          "%BASENAME%"
+        ]
+      }
+    ],
+    "creativision": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/crvision",
+          "crvision",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "dc": [
+      {
+        "label": "Flycast (Standalone)",
+        "emulator": "FLYCAST",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Flycast Dojo (Standalone)",
+        "emulator": "FLYCAST-DOJO",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Redream (Standalone)",
+        "emulator": "REDREAM",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "doom": [
+      {
+        "label": "PrBoom+ (Standalone)",
+        "emulator": "PRBOOM-PLUS",
+        "args": [
+          "-iwad",
+          "%ROM%"
+        ]
+      }
+    ],
+    "dos": [
+      {
+        "label": "DOSBox Pure Unleashed (Standalone)",
+        "emulator": "DOSBOX-PURE-UNLEASHED",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DOSBox-X (Standalone)",
+        "emulator": "DOSBOX-X",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DOSBox Staging (Standalone)",
+        "emulator": "DOSBOX-STAGING",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DREAMM (Standalone)",
+        "emulator": "DREAMM",
+        "args": [
+          "."
+        ],
+        "start_dir": "%GAMEDIR%"
+      }
+    ],
+    "dragon-32-slash-64": [
+      {
+        "label": "MAME Dragon 32 [Tape] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/dragon32",
+          "dragon32",
+          "-autoboot_delay",
+          "4",
+          "-autoboot_command",
+          "cloadm\"\"n",
+          "-cass",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME Dragon 32 [Cartridge] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/dragon32",
+          "dragon32",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME Dragon 64 [Tape] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/dragon32",
+          "dragon64",
+          "-autoboot_delay",
+          "4",
+          "-autoboot_command",
+          "cloadm\"\"n",
+          "-cass",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME Dragon 64 [Cartridge] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/dragon32",
+          "dragon64",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "XRoar Dragon 32 (Standalone)",
+        "emulator": "XROAR",
+        "args": [
+          "-fs",
+          "-default-machine",
+          "dragon32",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "XRoar Dragon 64 (Standalone)",
+        "emulator": "XROAR",
+        "args": [
+          "-fs",
+          "-default-machine",
+          "dragon64",
+          "%ROM%"
+        ]
+      }
+    ],
+    "epoch-super-cassette-vision": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/scv",
+          "scv",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "fairchild-channel-f": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/channelf",
+          "channelf",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "famicom": [
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Nestopia UE (Standalone)",
+        "emulator": "NESTOPIA-UE",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "puNES (Standalone)",
+        "emulator": "PUNES",
+        "args": [
+          "-u",
+          "yes",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "nes",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Famicom",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares FDS (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Famicom Disk System",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Plastic (Standalone)",
+        "emulator": "PLASTIC",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "fds": [
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Nestopia UE (Standalone)",
+        "emulator": "NESTOPIA-UE",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "nes",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Famicom Disk System",
+          "%ROM%"
+        ]
+      }
+    ],
+    "fm-7": [
+      {
+        "label": "MAME [FM-7 Diskette] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/fm7",
+          "fm7",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [FM-7 Tape] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/fm7",
+          "fm7",
+          "-autoboot_delay",
+          "5",
+          "-autoboot_command",
+          "loadnnnrunn",
+          "-cass1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [FM-7 Software list] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/fm7",
+          "fm7",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [FM77AV Diskette] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/fm7",
+          "fm77av",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [FM77AV Tape] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/fm7",
+          "fm77av",
+          "-autoboot_delay",
+          "5",
+          "-autoboot_command",
+          "loadnnnrunn",
+          "-cass1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [FM77AV Software list] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/fm7",
+          "fm77av",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "fm-towns": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/fmtowns",
+          "fmtownshr",
+          "-cdrom",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "g-and-w": [
+      {
+        "label": "MAME Local Artwork (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-artpath",
+          "%ROMPATH%/gameandwatch/artwork",
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/gameandwatch",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/gameandwatch",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "gamate": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/gamate",
+          "gamate",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "game-dot-com": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/gamecom",
+          "gamecom",
+          "-cartridge1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "gamegear": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "gg",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Game Gear",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      }
+    ],
+    "gb": [
+      {
+        "label": "SameBoy (Standalone)",
+        "emulator": "SAMEBOY",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Gearboy (Standalone)",
+        "emulator": "GEARBOY",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "mGBA (Standalone)",
+        "emulator": "MGBA",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "VBA-M (Standalone)",
+        "emulator": "VBA-M",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "SkyEmu (Standalone)",
+        "emulator": "SKYEMU",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "gb",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Game Boy",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      }
+    ],
+    "gba": [
+      {
+        "label": "mGBA (Standalone)",
+        "emulator": "MGBA",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "VBA-M (Standalone)",
+        "emulator": "VBA-M",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "NooDS (Standalone)",
+        "emulator": "NOODS",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "SkyEmu (Standalone)",
+        "emulator": "SKYEMU",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "gba",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Game Boy Advance",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      }
+    ],
+    "gbc": [
+      {
+        "label": "Sameboy (Standalone)",
+        "emulator": "SAMEBOY",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Gearboy (Standalone)",
+        "emulator": "GEARBOY",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "mGBA (Standalone)",
+        "emulator": "MGBA",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "VBA-M (Standalone)",
+        "emulator": "VBA-M",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "SkyEmu (Standalone)",
+        "emulator": "SKYEMU",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "gb",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Game Boy Color",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "--gameBoy.useSgb2=true",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "mGBA (Standalone)",
+        "emulator": "MGBA",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      }
+    ],
+    "genesis": [
+      {
+        "label": "BlastEm (Standalone)",
+        "emulator": "BLASTEM",
+        "args": [
+          "-m",
+          "gen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "md",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Mega Drive",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "BlastEm (Standalone)",
+        "emulator": "BLASTEM",
+        "args": [
+          "-m",
+          "gen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "md",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Mega Drive",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "BlastEm (Standalone)",
+        "emulator": "BLASTEM",
+        "args": [
+          "-m",
+          "gen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "md",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Mega Drive",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      }
+    ],
+    "handheld-electronic-lcd": [
+      {
+        "label": "MAME Local Artwork (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-artpath",
+          "%ROMPATH%/lcdgames/artwork",
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/lcdgames",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/lcdgames",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "hartung": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/gmaster",
+          "gmaster",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "intellivision": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/intellivision",
+          "intv",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "jaguar": [
+      {
+        "label": "BigPEmu",
+        "emulator": "BIGPEMU",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/atarijaguar",
+          "jaguar",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "lynx": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "lynx",
+          "%ROM%"
+        ]
+      }
+    ],
+    "mac": [
+      {
+        "label": "MAME Mac SE Bootable (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/macintosh",
+          "macse",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME Mac SE Boot Disk (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/macintosh",
+          "macse",
+          "-flop1",
+          "%GAMEDIR%/boot.dsk",
+          "-flop2",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME Mac Plus Bootable (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/macintosh",
+          "macplus",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME Mac Plus Boot Disk (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/macintosh",
+          "macplus",
+          "-flop1",
+          "%GAMEDIR%/boot.dsk",
+          "-flop2",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "Basilisk II (Standalone)",
+        "emulator": "BASILISKII",
+        "args": [
+          "--nogui",
+          "true"
+        ]
+      },
+      {
+        "label": "SheepShaver (Standalone)",
+        "emulator": "SHEEPSHAVER",
+        "args": [
+          "--nogui",
+          "true"
+        ]
+      }
+    ],
+    "mega-duck-slash-cougar-boy": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/megaduck",
+          "megaduck",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "model2": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/model2",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "model3": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/model3",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "msx": [
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "MSX",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "MSX",
+          "%ROM%"
+        ]
+      }
+    ],
+    "msx2": [
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "MSX2",
+          "%ROM%"
+        ]
+      }
+    ],
+    "multivision": [
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      }
+    ],
+    "n64": [
+      {
+        "label": "Mupen64Plus (Standalone)",
+        "emulator": "MUPEN64PLUS",
+        "args": [
+          "--nogui",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Parallel Launcher (Standalone)",
+        "emulator": "PARALLEL-LAUNCHER",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "simple64 (Standalone)",
+        "emulator": "SIMPLE64",
+        "args": [
+          "--nogui",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Rosalie's Mupen GUI (Standalone)",
+        "emulator": "ROSALIES-MUPEN-GUI",
+        "args": [
+          "--nogui",
+          "-q",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Nintendo 64",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Gopher64 (Standalone)",
+        "emulator": "GOPHER64",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      }
+    ],
+    "nds": [
+      {
+        "label": "melonDS (Standalone)",
+        "emulator": "MELONDS",
+        "args": [
+          "-f",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "DeSmuME (Standalone)",
+        "emulator": "DESMUME",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "NooDS (Standalone)",
+        "emulator": "NOODS",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "SkyEmu (Standalone)",
+        "emulator": "SKYEMU",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "neo-geo-cd": [
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "neocdz",
+          "-fullscreen",
+          "-cd",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/neogeocd",
+          "neocdz",
+          "-cdrm",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "neo-geo-pocket": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "ngp",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Neo Geo Pocket",
+          "%ROM%"
+        ]
+      }
+    ],
+    "neo-geo-pocket-color": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "ngp",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Neo Geo Pocket Color",
+          "%ROM%"
+        ]
+      }
+    ],
+    "neogeoaes": [
+      {
+        "label": "FinalBurn Neo (Standalone)",
+        "emulator": "FINALBURN-NEO",
+        "args": [
+          "-fullscreen",
+          "%BASENAME%"
+        ]
+      },
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/neogeo",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "nes": [
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Nestopia UE (Standalone)",
+        "emulator": "NESTOPIA-UE",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "puNES (Standalone)",
+        "emulator": "PUNES",
+        "args": [
+          "-u",
+          "yes",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "nes",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Famicom",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares FDS (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Famicom Disk System",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Plastic (Standalone)",
+        "emulator": "PLASTIC",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "ngage": [
+      {
+        "label": "EKA2L1 [Mounted] (Standalone)",
+        "emulator": "EKA2L1",
+        "args": [
+          "--fullscreen",
+          "--device",
+          "RH-29",
+          "--mount",
+          "%ROM%",
+          "--run",
+          "%BASENAME%"
+        ]
+      },
+      {
+        "label": "EKA2L1 [Installed] (Standalone)",
+        "emulator": "EKA2L1",
+        "args": [
+          "--fullscreen",
+          "--device",
+          "RH-29",
+          "--run",
+          "%BASENAME%"
+        ]
+      }
+    ],
+    "odyssey-2": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/odyssey2",
+          "odyssey2",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "oric": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/oric",
+          "oric1",
+          "-autoboot_delay",
+          "4",
+          "-autoboot_command",
+          "cload\"\"n",
+          "-cass",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "Oricutron (Standalone)",
+        "emulator": "ORICUTRON",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%EMUDIR%"
+      }
+    ],
+    "pc-8800-series": [
+      {
+        "label": "QUASI88 (Standalone)",
+        "emulator": "QUASI88",
+        "args": [
+          "-romdir",
+          "~/.quasi88",
+          "%ROM%"
+        ]
+      }
+    ],
+    "pc-fx": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "pcfx",
+          "%ROM%"
+        ]
+      }
+    ],
+    "philips-cd-i": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/cdimono1",
+          "cdimono1",
+          "-cdrom",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "pinball": [
+      {
+        "label": "Visual Pinball (Standalone)",
+        "emulator": "VISUAL-PINBALL",
+        "args": [
+          "-play",
+          "%ROM%"
+        ]
+      }
+    ],
+    "ps2": [
+      {
+        "label": "PCSX2 (Standalone)",
+        "emulator": "PCSX2",
+        "args": [
+          "-batch",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "PCSX2 Legacy (Standalone)",
+        "emulator": "PCSX2-LEGACY",
+        "args": [
+          "--nogui",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Play! (Standalone)",
+        "emulator": "PLAY!",
+        "args": [
+          "--fullscreen",
+          "--disc",
+          "%ROM%"
+        ]
+      }
+    ],
+    "ps3": [
+      {
+        "label": "RPCS3 Directory (Standalone)",
+        "emulator": "RPCS3",
+        "args": [
+          "--no-gui",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "RPCS3 ISO (Standalone)",
+        "emulator": "RPCS3",
+        "args": [
+          "--no-gui",
+          "%ROM%"
+        ]
+      }
+    ],
+    "ps4": [
+      {
+        "label": "shadPS4 eboot.bin (Standalone)",
+        "emulator": "SHADPS4",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "shadPS4 [GUI] eboot.bin (Standalone)",
+        "emulator": "SHADPS4-GUI",
+        "args": [
+          "-d",
+          "-g",
+          "%ROM%"
+        ]
+      }
+    ],
+    "psp": [
+      {
+        "label": "PPSSPP (Standalone)",
+        "emulator": "PPSSPP",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "psx": [
+      {
+        "label": "DuckStation (Standalone)",
+        "emulator": "DUCKSTATION",
+        "args": [
+          "-batch",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "PlayStation",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "psx",
+          "%ROM%"
+        ]
+      }
+    ],
+    "rpg-maker": [
+      {
+        "label": "EasyRPG Player (Standalone)",
+        "emulator": "EASYRPG",
+        "args": [
+          "--project-path",
+          "%ROM%"
+        ]
+      }
+    ],
+    "sam-coupe": [
+      {
+        "label": "SimCoupé (Standalone)",
+        "emulator": "SIMCOUPE",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "satellaview": [
+      {
+        "label": "Snes9x (Standalone)",
+        "emulator": "SNES9X",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "bsnes (Standalone)",
+        "emulator": "BSNES",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Super Famicom",
+          "%ROM%"
+        ]
+      }
+    ],
+    "saturn": [
+      {
+        "label": "Kronos (Standalone)",
+        "emulator": "KRONOS",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Ymir (Standalone)",
+        "emulator": "YMIR",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "~/.ymir"
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "ss",
+          "%ROM%"
+        ]
+      }
+    ],
+    "scummvm": [
+      {
+        "label": "ScummVM (Standalone)",
+        "emulator": "SCUMMVM",
+        "args": [
+          "%BASENAME%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DREAMM (Standalone)",
+        "emulator": "DREAMM",
+        "args": [
+          "."
+        ],
+        "start_dir": "%GAMEDIR%"
+      }
+    ],
+    "sega32": [
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Mega 32X",
+          "%ROM%"
+        ]
+      }
+    ],
+    "segacd": [
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Mega CD",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Mega CD",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Mega CD",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      }
+    ],
+    "sfam": [
+      {
+        "label": "Snes9x (Standalone)",
+        "emulator": "SNES9X",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "bsnes (Standalone)",
+        "emulator": "BSNES",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "snes",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Super Famicom",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      }
+    ],
+    "sg1000": [
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "SG-1000",
+          "%ROM%"
+        ]
+      }
+    ],
+    "sharp-x68000": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/x68000",
+          "x68000",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "sms": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "sms",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Master System",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "sms",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Master System",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      }
+    ],
+    "snes": [
+      {
+        "label": "Snes9x (Standalone)",
+        "emulator": "SNES9X",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "bsnes (Standalone)",
+        "emulator": "BSNES",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "snes",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Super Famicom",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "jgenesis (Standalone)",
+        "emulator": "JGENESIS",
+        "args": [
+          "--file-path",
+          "%ROM%"
+        ]
+      }
+    ],
+    "stv": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/stv",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "ss",
+          "%ROM%"
+        ]
+      }
+    ],
+    "sufami-turbo": [
+      {
+        "label": "Snes9x (Standalone)",
+        "emulator": "SNES9X",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "bsnes (Standalone)",
+        "emulator": "BSNES",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Super Famicom",
+          "%ROM%"
+        ]
+      }
+    ],
+    "super-acan": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/supracan",
+          "supracan",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "supergrafx": [
+      {
+        "label": "Geargrafx (Standalone)",
+        "emulator": "GEARGRAFX",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "pce",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "SuperGrafx",
+          "%ROM%"
+        ]
+      }
+    ],
+    "supervision": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/supervision",
+          "svision",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "switch": [
+      {
+        "label": "Eden (Standalone)",
+        "emulator": "EDEN",
+        "args": [
+          "-f",
+          "-g",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Ryujinx (Standalone)",
+        "emulator": "RYUJINX",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "symbian": [
+      {
+        "label": "EKA2L1 [Nokia N-Gage] (Standalone)",
+        "emulator": "EKA2L1",
+        "args": [
+          "--fullscreen",
+          "--device",
+          "RH-29",
+          "--run",
+          "%BASENAME%"
+        ]
+      },
+      {
+        "label": "EKA2L1 [Nokia N70] (Standalone)",
+        "emulator": "EKA2L1",
+        "args": [
+          "--fullscreen",
+          "--device",
+          "RM-84",
+          "--run",
+          "%BASENAME%"
+        ]
+      },
+      {
+        "label": "EKA2L1 [Nokia N97] (Standalone)",
+        "emulator": "EKA2L1",
+        "args": [
+          "--fullscreen",
+          "--device",
+          "RM-507",
+          "--run",
+          "%BASENAME%"
+        ]
+      }
+    ],
+    "tg16": [
+      {
+        "label": "Geargrafx (Standalone)",
+        "emulator": "GEARGRAFX",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "pce",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "PC Engine",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Geargrafx (Standalone)",
+        "emulator": "GEARGRAFX",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "pce",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "PC Engine",
+          "%ROM%"
+        ]
+      }
+    ],
+    "ti-99": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/ti99",
+          "ti99_4a",
+          "-ioport",
+          "peb",
+          "-ioport:peb:slot3",
+          "speechadapter",
+          "-cart",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME Legacy (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/ti99",
+          "ti99_4a",
+          "-ioport",
+          "peb",
+          "-ioport:peb:slot3",
+          "speech",
+          "-cart",
+          "%BASENAME%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "tic-80": [
+      {
+        "label": "TIC-80 (Standalone)",
+        "emulator": "TIC-80",
+        "args": [
+          "%ROM%",
+          "--fullscreen"
+        ]
+      }
+    ],
+    "trs-80": [
+      {
+        "label": "sdl2trs DOS Diskette (Standalone)",
+        "emulator": "SDL2TRS",
+        "args": [
+          "-rom",
+          "%ROMPATH%/trs-80/level2.rom",
+          "-disk0",
+          "%ROMPATH%/trs-80/boot.dsk",
+          "-disk1",
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "sdl2trs Bootable Diskette (Standalone)",
+        "emulator": "SDL2TRS",
+        "args": [
+          "-rom",
+          "%ROMPATH%/trs-80/level2.rom",
+          "-disk0",
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "sdl2trs CMD File (Standalone)",
+        "emulator": "SDL2TRS",
+        "args": [
+          "-rom",
+          "%ROMPATH%/trs-80/level2.rom",
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      }
+    ],
+    "trs-80-color-computer": [
+      {
+        "label": "XRoar CoCo 2 NTSC (Standalone)",
+        "emulator": "XROAR",
+        "args": [
+          "-fs",
+          "-default-machine",
+          "coco2bus",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "XRoar CoCo 2 PAL (Standalone)",
+        "emulator": "XROAR",
+        "args": [
+          "-fs",
+          "-default-machine",
+          "coco2b",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "MAME [Cartridge] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/coco",
+          "coco",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Tape] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/coco",
+          "coco",
+          "-autoboot_delay",
+          "2",
+          "-autoboot_command",
+          "cloadm:execn",
+          "-cass",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "turbografx-cd": [
+      {
+        "label": "Geargrafx (Standalone)",
+        "emulator": "GEARGRAFX",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "pce",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "PC Engine CD",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Geargrafx (Standalone)",
+        "emulator": "GEARGRAFX",
+        "args": [
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "pce",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "PC Engine CD",
+          "%ROM%"
+        ]
+      }
+    ],
+    "type-x": [
+      {
+        "label": "Wine (Standalone)",
+        "emulator": "WINE",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "Proton (Standalone)",
+        "emulator": "PROTON",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      }
+    ],
+    "vectrex": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/vectrex",
+          "vectrex",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "vic-20": [
+      {
+        "label": "VICE xvic (Standalone)",
+        "emulator": "VICE-XVIC",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "videopac-g7400": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/videopac",
+          "videopac",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "virtualboy": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "vb",
+          "%ROM%"
+        ]
+      }
+    ],
+    "vsmile": [
+      {
+        "label": "MAME (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/vsmile",
+          "vsmile",
+          "-cart",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "wiiu": [
+      {
+        "label": "Cemu (Standalone)",
+        "emulator": "CEMU",
+        "args": [
+          "-g",
+          "%ROM%"
+        ]
+      }
+    ],
+    "win": [
+      {
+        "label": "DOSBox Pure Unleashed (Standalone)",
+        "emulator": "DOSBOX-PURE-UNLEASHED",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DOSBox-X (Standalone)",
+        "emulator": "DOSBOX-X",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DOSBox Staging (Standalone)",
+        "emulator": "DOSBOX-STAGING",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DREAMM (Standalone)",
+        "emulator": "DREAMM",
+        "args": [
+          "."
+        ],
+        "start_dir": "%GAMEDIR%"
+      }
+    ],
+    "win3x": [
+      {
+        "label": "DOSBox-X (Standalone)",
+        "emulator": "DOSBOX-X",
+        "args": [
+          "-defaultdir",
+          "%GAMEDIR%",
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DOSBox Pure Unleashed (Standalone)",
+        "emulator": "DOSBOX-PURE-UNLEASHED",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      }
+    ],
+    "win9x": [
+      {
+        "label": "DOSBox-X (Standalone)",
+        "emulator": "DOSBOX-X",
+        "args": [
+          "-defaultdir",
+          "%GAMEDIR%",
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      },
+      {
+        "label": "DOSBox Pure Unleashed (Standalone)",
+        "emulator": "DOSBOX-PURE-UNLEASHED",
+        "args": [
+          "%ROM%"
+        ],
+        "start_dir": "%GAMEDIR%"
+      }
+    ],
+    "wonderswan": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "wswan",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "WonderSwan",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares [Benesse Pocket Challenge V2] (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "Pocket Challenge V2",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      }
+    ],
+    "wonderswan-color": [
+      {
+        "label": "Mednafen (Standalone)",
+        "emulator": "MEDNAFEN",
+        "args": [
+          "-force_module",
+          "wswan",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "ares (Standalone)",
+        "emulator": "ARES",
+        "args": [
+          "--fullscreen",
+          "--system",
+          "WonderSwan Color",
+          "%ROM%"
+        ]
+      },
+      {
+        "label": "Mesen (Standalone)",
+        "emulator": "MESEN",
+        "args": [
+          "--fullscreen",
+          "%ROM%"
+        ]
+      }
+    ],
+    "x1": [
+      {
+        "label": "MAME [Diskette] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/x1",
+          "x1",
+          "-flop1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      },
+      {
+        "label": "MAME [Tape] (Standalone)",
+        "emulator": "MAME",
+        "args": [
+          "-rompath",
+          "%GAMEDIR%;%ROMPATH%/x1",
+          "x1",
+          "-cass1",
+          "%ROM%"
+        ],
+        "start_dir": "~/.mame"
+      }
+    ],
+    "z-machine": [
+      {
+        "label": "Gargoyle (Standalone)",
+        "emulator": "GARGOYLE",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ],
+    "zxs": [
+      {
+        "label": "Fuse (Standalone)",
+        "emulator": "FUSE",
+        "args": [
+          "%ROM%"
+        ]
+      }
+    ]
+  },
+  "emulators": {
+    "ADVANCEMAME": {
+      "system_path": [
+        "advmame"
+      ],
+      "static_path": [
+        "~/Applications/advancemame/advmame",
+        "~/.local/share/applications/advancemame/advmame",
+        "~/.local/bin/advancemame/advmame",
+        "~/bin/advancemame/advmame"
+      ]
+    },
+    "AMIBERRY": {
+      "system_path": [
+        "amiberry"
+      ],
+      "static_path": [
+        "~/Applications/amiberry/amiberry",
+        "~/.local/share/applications/amiberry/amiberry",
+        "~/.local/bin/amiberry/amiberry",
+        "~/bin/amiberry/amiberry"
+      ]
+    },
+    "ARES": {
+      "system_path": [
+        "ares",
+        "dev.ares.ares"
+      ],
+      "static_path": [
+        "~/Applications/ares*.AppImage",
+        "~/.local/share/applications/ares*.AppImage",
+        "~/.local/bin/ares*.AppImage",
+        "~/bin/ares*.AppImage",
+        "/var/lib/flatpak/exports/bin/dev.ares.ares",
+        "~/.local/share/flatpak/exports/bin/dev.ares.ares"
+      ]
+    },
+    "ATARI800": {
+      "system_path": [
+        "atari800",
+        "atari800-jz.atari800"
+      ]
+    },
+    "AZAHAR": {
+      "system_path": [
+        "azahar"
+      ],
+      "static_path": [
+        "~/Applications/azahar*.AppImage",
+        "~/.local/share/applications/azahar*.AppImage",
+        "~/.local/bin/azahar*.AppImage",
+        "~/bin/azahar*.AppImage",
+        "~/Applications/Azahar-Enhanced*.AppImage",
+        "~/.local/share/applications/Azahar-Enhanced*.AppImage",
+        "~/.local/bin/Azahar-Enhanced*.AppImage",
+        "~/bin/Azahar-Enhanced*.AppImage",
+        "/var/lib/flatpak/exports/bin/org.azahar_emu.Azahar",
+        "~/.local/share/flatpak/exports/bin/org.azahar_emu.Azahar"
+      ]
+    },
+    "AZAHARPLUS": {
+      "static_path": [
+        "~/Applications/azaharplus*.AppImage",
+        "~/.local/share/applications/azaharplus*.AppImage",
+        "~/.local/bin/azaharplus*.AppImage",
+        "~/bin/azaharplus*.AppImage"
+      ]
+    },
+    "BASILISKII": {
+      "system_path": [
+        "BasiliskII",
+        "net.cebix.basilisk"
+      ],
+      "static_path": [
+        "~/Applications/BasiliskII*.AppImage",
+        "~/.local/share/applications/BasiliskII*.AppImage",
+        "~/.local/bin/BasiliskII*.AppImage",
+        "~/bin/BasiliskII*.AppImage",
+        "/var/lib/flatpak/exports/bin/net.cebix.basilisk",
+        "~/.local/share/flatpak/exports/bin/net.cebix.basilisk"
+      ]
+    },
+    "BIGPEMU": {
+      "system_path": [
+        "bigpemu"
+      ],
+      "static_path": [
+        "~/Applications/bigpemu/bigpemu",
+        "~/.local/share/applications/bigpemu/bigpemu",
+        "~/.local/bin/bigpemu/bigpemu",
+        "~/bin/bigpemu/bigpemu"
+      ]
+    },
+    "BLASTEM": {
+      "system_path": [
+        "blastem",
+        "com.retrodev.blastem"
+      ],
+      "static_path": [
+        "~/Applications/blastem/blastem",
+        "~/.local/share/applications/blastem/blastem",
+        "~/.local/bin/blastem/blastem",
+        "~/bin/blastem/blastem",
+        "/var/lib/flatpak/exports/bin/com.retrodev.blastem",
+        "~/.local/share/flatpak/exports/bin/com.retrodev.blastem"
+      ]
+    },
+    "BSNES": {
+      "system_path": [
+        "bsnes",
+        "dev.bsnes.bsnes"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/dev.bsnes.bsnes",
+        "~/.local/share/flatpak/exports/bin/dev.bsnes.bsnes"
+      ]
+    },
+    "CEMU": {
+      "system_path": [
+        "cemu",
+        "Cemu"
+      ],
+      "static_path": [
+        "~/Applications/Cemu*.AppImage",
+        "~/.local/share/applications/Cemu*.AppImage",
+        "~/.local/bin/Cemu*.AppImage",
+        "~/bin/Cemu*.AppImage",
+        "~/Applications/Cemu/Cemu",
+        "~/.local/share/applications/Cemu/Cemu",
+        "~/.local/bin/Cemu/Cemu",
+        "~/bin/Cemu/Cemu",
+        "/var/lib/flatpak/exports/bin/info.cemu.Cemu",
+        "~/.local/share/flatpak/exports/bin/info.cemu.Cemu"
+      ]
+    },
+    "CITRA": {
+      "system_path": [
+        "citra",
+        "citra-emu.citra-nightly",
+        "org.citra_emu.citra"
+      ],
+      "static_path": [
+        "~/Applications/citra-qt*.AppImage",
+        "~/.local/share/applications/citra-qt*.AppImage",
+        "~/.local/bin/citra-qt*.AppImage",
+        "~/bin/citra-qt*.AppImage",
+        "~/.citra/canary/citra-qt.AppImage",
+        "~/.citra/nightly/citra-qt.AppImage",
+        "/var/lib/flatpak/exports/bin/org.citra_emu.citra",
+        "~/.local/share/flatpak/exports/bin/org.citra_emu.citra"
+      ]
+    },
+    "CPCEMU": {
+      "system_path": [
+        "cpcemu"
+      ],
+      "static_path": [
+        "~/Applications/cpcemu/cpcemu",
+        "~/.local/share/applications/cpcemu/cpcemu",
+        "~/.local/bin/cpcemu/cpcemu",
+        "~/bin/cpcemu/cpcemu"
+      ]
+    },
+    "DESMUME": {
+      "system_path": [
+        "desmume",
+        "org.desmume.DeSmuME"
+      ],
+      "static_path": [
+        "~/Applications/desmume*.AppImage",
+        "~/.local/share/applications/desmume*.AppImage",
+        "~/.local/bin/desmume*.AppImage",
+        "~/bin/desmume*.AppImage",
+        "/var/lib/flatpak/exports/bin/org.desmume.DeSmuME",
+        "~/.local/share/flatpak/exports/bin/org.desmume.DeSmuME"
+      ]
+    },
+    "DOSBOX-PURE-UNLEASHED": {
+      "system_path": [
+        "DOSBoxPure"
+      ],
+      "static_path": [
+        "~/Applications/DOSBoxPure/DOSBoxPure",
+        "~/.local/share/applications/DOSBoxPure/DOSBoxPure",
+        "~/.local/bin/DOSBoxPure/DOSBoxPure",
+        "~/bin/DOSBoxPure/DOSBoxPure"
+      ]
+    },
+    "DOSBOX-STAGING": {
+      "system_path": [
+        "dosbox-staging",
+        "io.github.dosbox-staging"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/io.github.dosbox-staging",
+        "~/.local/share/flatpak/exports/bin/io.github.dosbox-staging"
+      ]
+    },
+    "DOSBOX-X": {
+      "system_path": [
+        "dosbox-x",
+        "com.dosbox_x.DOSBox-X"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/com.dosbox_x.DOSBox-X",
+        "~/.local/share/flatpak/exports/bin/com.dosbox_x.DOSBox-X"
+      ]
+    },
+    "DREAMM": {
+      "system_path": [
+        "dreamm"
+      ],
+      "static_path": [
+        "~/Applications/dreamm/dreamm",
+        "~/.local/share/applications/dreamm/dreamm",
+        "~/.local/bin/dreamm/dreamm",
+        "~/bin/dreamm/dreamm"
+      ]
+    },
+    "DUCKSTATION": {
+      "system_path": [
+        "duckstation-nogui",
+        "duckstation-qt",
+        "duckstation",
+        "org.duckstation.DuckStation"
+      ],
+      "static_path": [
+        "~/Applications/DuckStation*.AppImage",
+        "~/.local/share/applications/DuckStation*.AppImage",
+        "~/.local/bin/DuckStation*.AppImage",
+        "~/bin/DuckStation*.AppImage",
+        "~/Applications/duckstation-nogui*.AppImage",
+        "~/.local/share/applications/duckstation-nogui*.AppImage",
+        "~/.local/bin/duckstation-nogui*.AppImage",
+        "~/bin/duckstation-nogui*.AppImage",
+        "~/Applications/duckstation-qt*.AppImage",
+        "~/.local/share/applications/duckstation-qt*.AppImage",
+        "~/.local/bin/duckstation-qt*.AppImage",
+        "~/bin/duckstation-qt*.AppImage",
+        "/var/lib/flatpak/exports/bin/org.duckstation.DuckStation",
+        "~/.local/share/flatpak/exports/bin/org.duckstation.DuckStation"
+      ]
+    },
+    "EASYRPG": {
+      "system_path": [
+        "easyrpg-player",
+        "org.easyrpg.player"
+      ],
+      "static_path": [
+        "~/Applications/easyrpg/easyrpg-player",
+        "~/.local/share/applications/easyrpg/easyrpg-player",
+        "~/.local/bin/easyrpg/easyrpg-player",
+        "~/bin/easyrpg/easyrpg-player",
+        "/var/lib/flatpak/exports/bin/org.easyrpg.player",
+        "~/.local/share/flatpak/exports/bin/org.easyrpg.player"
+      ]
+    },
+    "EDEN": {
+      "system_path": [
+        "eden"
+      ],
+      "static_path": [
+        "~/Applications/Eden*.AppImage",
+        "~/.local/share/applications/Eden*.AppImage",
+        "~/.local/bin/Eden*.AppImage",
+        "~/bin/Eden*.AppImage"
+      ]
+    },
+    "EKA2L1": {
+      "system_path": [
+        "eka2l1_qt"
+      ],
+      "static_path": [
+        "~/Applications/EKA2L1*.AppImage",
+        "~/.local/share/applications/EKA2L1*.AppImage",
+        "~/.local/bin/EKA2L1*.AppImage",
+        "~/bin/EKA2L1*.AppImage"
+      ]
+    },
+    "FINALBURN-NEO": {
+      "system_path": [
+        "fbneo"
+      ],
+      "static_path": [
+        "~/Applications/fbneo/fbneo",
+        "~/.local/share/applications/fbneo/fbneo",
+        "~/.local/bin/fbneo/fbneo",
+        "~/bin/fbneo/fbneo"
+      ]
+    },
+    "FLYCAST": {
+      "system_path": [
+        "flycast",
+        "org.flycast.Flycast"
+      ],
+      "static_path": [
+        "~/Applications/flycast-x86*.AppImage",
+        "~/.local/share/applications/flycast-x86*.AppImage",
+        "~/.local/bin/flycast-x86*.AppImage",
+        "~/bin/flycast-x86*.AppImage",
+        "/var/lib/flatpak/exports/bin/org.flycast.Flycast",
+        "~/.local/share/flatpak/exports/bin/org.flycast.Flycast"
+      ]
+    },
+    "FLYCAST-DOJO": {
+      "system_path": [
+        "flycast-dojo"
+      ],
+      "static_path": [
+        "~/Applications/flycast-dojo*.AppImage",
+        "~/.local/share/applications/flycast-dojo*.AppImage",
+        "~/.local/bin/flycast-dojo*.AppImage",
+        "~/bin/flycast-dojo*.AppImage"
+      ]
+    },
+    "FS-UAE": {
+      "system_path": [
+        "fs-uae-launcher",
+        "fsuae.launcher"
+      ],
+      "static_path": [
+        "~/Applications/FS-UAE-Launcher/Linux/x86-64/fs-uae-launcher",
+        "~/.local/share/applications/FS-UAE-Launcher/Linux/x86-64/fs-uae-launcher",
+        "~/.local/bin/FS-UAE-Launcher/Linux/x86-64/fs-uae-launcher",
+        "~/bin/FS-UAE-Launcher/Linux/x86-64/fs-uae-launcher",
+        "/var/lib/flatpak/exports/bin/net.fsuae.FS-UAE|flatpak run --command=fs-uae-launcher net.fsuae.FS-UAE",
+        "~/.local/share/flatpak/exports/bin/net.fsuae.FS-UAE|flatpak run --command=fs-uae-launcher net.fsuae.FS-UAE"
+      ]
+    },
+    "FUSE": {
+      "system_path": [
+        "fuse",
+        "net.sf.fuse_emulator"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/net.sf.fuse_emulator",
+        "~/.local/share/flatpak/exports/bin/net.sf.fuse_emulator"
+      ]
+    },
+    "GARGOYLE": {
+      "system_path": [
+        "gargoyle",
+        "io.github.garglk.Gargoyle"
+      ],
+      "static_path": [
+        "~/Applications/Gargoyle*.AppImage",
+        "~/.local/share/applications/Gargoyle*.AppImage",
+        "~/.local/bin/Gargoyle*.AppImage",
+        "~/bin/Gargoyle*.AppImage",
+        "/var/lib/flatpak/exports/bin/io.github.garglk.Gargoyle",
+        "~/.local/share/flatpak/exports/bin/io.github.garglk.Gargoyle"
+      ]
+    },
+    "GEARBOY": {
+      "system_path": [
+        "gearboy"
+      ],
+      "static_path": [
+        "~/Applications/gearboy/gearboy",
+        "~/.local/share/applications/gearboy/gearboy",
+        "~/.local/bin/gearboy/gearboy",
+        "~/bin/gearboy/gearboy"
+      ]
+    },
+    "GEARGRAFX": {
+      "system_path": [
+        "geargrafx"
+      ],
+      "static_path": [
+        "~/Applications/geargrafx/geargrafx",
+        "~/.local/share/applications/geargrafx/geargrafx",
+        "~/.local/bin/geargrafx/geargrafx",
+        "~/bin/geargrafx/geargrafx"
+      ]
+    },
+    "GOPHER2600": {
+      "static_path": [
+        "~/Applications/gopher2600/gopher2600_linux_amd64",
+        "~/.local/share/applications/gopher2600/gopher2600_linux_amd64",
+        "~/.local/bin/gopher2600/gopher2600_linux_amd64",
+        "~/bin/gopher2600/gopher2600_linux_amd64"
+      ]
+    },
+    "GOPHER64": {
+      "system_path": [
+        "gopher64-linux-x86_64",
+        "io.github.gopher64.gopher64"
+      ],
+      "static_path": [
+        "~/Applications/gopher64/gopher64-linux-x86_64",
+        "~/.local/share/applications/gopher64/gopher64-linux-x86_64",
+        "~/.local/bin/gopher64/gopher64-linux-x86_64",
+        "~/bin/gopher64/gopher64-linux-x86_64",
+        "/var/lib/flatpak/exports/bin/io.github.gopher64.gopher64",
+        "~/.local/share/flatpak/exports/bin/io.github.gopher64.gopher64"
+      ]
+    },
+    "HATARI": {
+      "system_path": [
+        "hatari",
+        "org.tuxfamily.hatari"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/org.tuxfamily.hatari",
+        "~/.local/share/flatpak/exports/bin/org.tuxfamily.hatari"
+      ]
+    },
+    "IZAPPLE2": {
+      "static_path": [
+        "~/Applications/izapple2/izapple2sdl_linux_amd64",
+        "~/.local/share/applications/izapple2/izapple2sdl_linux_amd64",
+        "~/.local/bin/izapple2/izapple2sdl_linux_amd64",
+        "~/bin/izapple2/izapple2sdl_linux_amd64"
+      ]
+    },
+    "JGENESIS": {
+      "static_path": [
+        "~/Applications/jgenesis-cli*.AppImage",
+        "~/.local/share/applications/jgenesis-cli*.AppImage",
+        "~/.local/bin/jgenesis-cli*.AppImage",
+        "~/bin/jgenesis-cli*.AppImage"
+      ]
+    },
+    "KRONOS": {
+      "system_path": [
+        "kronos"
+      ],
+      "static_path": [
+        "~/Applications/kronos/kronos",
+        "~/.local/share/applications/kronos/kronos",
+        "~/.local/bin/kronos/kronos",
+        "~/bin/kronos/kronos"
+      ]
+    },
+    "LIGHTSPARK": {
+      "system_path": [
+        "lightspark"
+      ],
+      "static_path": [
+        "~/Applications/lightspark/lightspark",
+        "~/.local/share/applications/lightspark/lightspark",
+        "~/.local/bin/lightspark/lightspark",
+        "~/bin/lightspark/lightspark"
+      ]
+    },
+    "LIME3DS": {
+      "system_path": [
+        "lime3ds",
+        "lime3ds-gui",
+        "lime-qt"
+      ],
+      "static_path": [
+        "~/Applications/lime3ds.AppImage",
+        "~/.local/share/applications/lime3ds.AppImage",
+        "~/.local/bin/lime3ds.AppImage",
+        "~/bin/lime3ds.AppImage",
+        "~/Applications/lime3ds-gui*.AppImage",
+        "~/.local/share/applications/lime3ds-gui*.AppImage",
+        "~/.local/bin/lime3ds-gui*.AppImage",
+        "~/bin/lime3ds-gui*.AppImage",
+        "~/Applications/lime-qt*.AppImage",
+        "~/.local/share/applications/lime-qt*.AppImage",
+        "~/.local/bin/lime-qt*.AppImage",
+        "~/bin/lime-qt*.AppImage",
+        "~/Applications/lime3ds*.AppImage",
+        "~/.local/share/applications/lime3ds*.AppImage",
+        "~/.local/bin/lime3ds*.AppImage",
+        "~/bin/lime3ds*.AppImage",
+        "/var/lib/flatpak/exports/bin/io.github.lime3ds.Lime3DS",
+        "~/.local/share/flatpak/exports/bin/io.github.lime3ds.Lime3DS"
+      ]
+    },
+    "LINAPPLE": {
+      "system_path": [
+        "linapple"
+      ],
+      "static_path": [
+        "~/Applications/linapple/linapple",
+        "~/.local/share/applications/linapple/linapple",
+        "~/.local/bin/linapple/linapple",
+        "~/bin/linapple/linapple"
+      ]
+    },
+    "MAME": {
+      "system_path": [
+        "mame",
+        "org.mamedev.MAME"
+      ],
+      "static_path": [
+        "~/Applications/MAME*.AppImage",
+        "~/.local/share/applications/MAME*.AppImage",
+        "~/.local/bin/MAME*.AppImage",
+        "~/bin/MAME*.AppImage",
+        "/var/lib/flatpak/exports/bin/org.mamedev.MAME",
+        "~/.local/share/flatpak/exports/bin/org.mamedev.MAME"
+      ]
+    },
+    "MANDARINE": {
+      "system_path": [
+        "mandarine-qt"
+      ],
+      "static_path": [
+        "~/Applications/mandarine-qt*.AppImage",
+        "~/.local/share/applications/mandarine-qt*.AppImage",
+        "~/.local/bin/mandarine-qt*.AppImage",
+        "~/bin/mandarine-qt*.AppImage"
+      ]
+    },
+    "MEDNAFEN": {
+      "system_path": [
+        "mednafen"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/com.github.AmatCoder.mednaffe|flatpak run --command=mednafen com.github.AmatCoder.mednaffe",
+        "~/.local/share/flatpak/exports/bin/com.github.AmatCoder.mednaffe|flatpak run --command=mednafen com.github.AmatCoder.mednaffe"
+      ]
+    },
+    "MELONDS": {
+      "system_path": [
+        "melonds",
+        "melonDS",
+        "net.kuribo64.melonDS"
+      ],
+      "static_path": [
+        "~/Applications/melonDS*.AppImage",
+        "~/.local/share/applications/melonDS*.AppImage",
+        "~/.local/bin/melonDS*.AppImage",
+        "~/bin/melonDS*.AppImage",
+        "/var/lib/flatpak/exports/bin/net.kuribo64.melonDS",
+        "~/.local/share/flatpak/exports/bin/net.kuribo64.melonDS"
+      ]
+    },
+    "MESEN": {
+      "system_path": [
+        "mesen2"
+      ],
+      "static_path": [
+        "~/Applications/Mesen*.AppImage",
+        "~/.local/share/applications/Mesen*.AppImage",
+        "~/.local/bin/Mesen*.AppImage",
+        "~/bin/Mesen*.AppImage",
+        "~/Applications/Mesen/Mesen",
+        "~/.local/share/applications/Mesen/Mesen",
+        "~/.local/bin/Mesen/Mesen",
+        "~/bin/Mesen/Mesen"
+      ]
+    },
+    "MGBA": {
+      "system_path": [
+        "mgba",
+        "mgba-qt",
+        "io.mgba.mGBA"
+      ],
+      "static_path": [
+        "~/Applications/mGBA*.AppImage",
+        "~/.local/share/applications/mGBA*.AppImage",
+        "~/.local/bin/mGBA*.AppImage",
+        "~/bin/mGBA*.AppImage",
+        "/var/lib/flatpak/exports/bin/io.mgba.mGBA",
+        "~/.local/share/flatpak/exports/bin/io.mgba.mGBA"
+      ]
+    },
+    "MUPEN64PLUS": {
+      "system_path": [
+        "m64p",
+        "io.github.m64p.m64p"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/io.github.m64p.m64p",
+        "~/.local/share/flatpak/exports/bin/io.github.m64p.m64p"
+      ]
+    },
+    "NESTOPIA-UE": {
+      "system_path": [
+        "nestopia",
+        "ca._0ldsk00l.Nestopia"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/ca._0ldsk00l.Nestopia",
+        "~/.local/share/flatpak/exports/bin/ca._0ldsk00l.Nestopia"
+      ]
+    },
+    "NOODS": {
+      "system_path": [
+        "noods"
+      ]
+    },
+    "ORICUTRON": {
+      "system_path": [
+        "Oricutron"
+      ],
+      "static_path": [
+        "~/Applications/oricutron/Oricutron",
+        "~/.local/share/applications/oricutron/Oricutron",
+        "~/.local/bin/oricutron/Oricutron",
+        "~/bin/oricutron/Oricutron"
+      ]
+    },
+    "PANDA3DS": {
+      "system_path": [
+        "panda3ds"
+      ],
+      "static_path": [
+        "~/Applications/Alber-*.AppImage",
+        "~/.local/share/applications/Alber-*.AppImage",
+        "~/.local/bin/Alber-*.AppImage",
+        "~/bin/Alber-*.AppImage"
+      ]
+    },
+    "PARALLEL-LAUNCHER": {
+      "system_path": [
+        "parallel-launcher",
+        "ca.parallel_launcher.ParallelLauncher"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/ca.parallel_launcher.ParallelLauncher",
+        "~/.local/share/flatpak/exports/bin/ca.parallel_launcher.ParallelLauncher"
+      ]
+    },
+    "PCSX2": {
+      "system_path": [
+        "pcsx2-qt",
+        "pcsx2",
+        "net.pcsx2.PCSX2"
+      ],
+      "static_path": [
+        "~/Applications/pcsx2*.AppImage",
+        "~/.local/share/applications/pcsx2*.AppImage",
+        "~/.local/bin/pcsx2*.AppImage",
+        "~/bin/pcsx2*.AppImage",
+        "/var/lib/flatpak/exports/bin/net.pcsx2.PCSX2",
+        "~/.local/share/flatpak/exports/bin/net.pcsx2.PCSX2"
+      ]
+    },
+    "PCSX2-LEGACY": {
+      "system_path": [
+        "PCSX2",
+        "pcsx2",
+        "net.pcsx2.PCSX2"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/net.pcsx2.PCSX2",
+        "~/.local/share/flatpak/exports/bin/net.pcsx2.PCSX2"
+      ]
+    },
+    "PLASTIC": {
+      "system_path": [
+        "plastic"
+      ]
+    },
+    "PLAY!": {
+      "system_path": [
+        "org.purei.Play"
+      ],
+      "static_path": [
+        "~/Applications/Play!*.AppImage",
+        "~/.local/share/applications/Play!*.AppImage",
+        "~/.local/bin/Play!*.AppImage",
+        "~/bin/Play!*.AppImage",
+        "/var/lib/flatpak/exports/bin/org.purei.Play",
+        "~/.local/share/flatpak/exports/bin/org.purei.Play"
+      ]
+    },
+    "PPSSPP": {
+      "system_path": [
+        "ppsspp",
+        "ppsspp-emu.ppsspp-sdl",
+        "PPSSPPSDL",
+        "PPSSPPQt",
+        "org.ppsspp.PPSSPP"
+      ],
+      "static_path": [
+        "~/Applications/PPSSPP*.AppImage",
+        "~/.local/share/applications/PPSSPP*.AppImage",
+        "~/.local/bin/PPSSPP*.AppImage",
+        "~/bin/PPSSPP*.AppImage",
+        "/var/lib/flatpak/exports/bin/org.ppsspp.PPSSPP",
+        "~/.local/share/flatpak/exports/bin/org.ppsspp.PPSSPP"
+      ]
+    },
+    "PRBOOM-PLUS": {
+      "system_path": [
+        "prboom-plus"
+      ]
+    },
+    "PROTON": {
+      "static_path": [
+        "~/Applications/Proton/wine*.AppImage",
+        "~/.local/share/applications/Proton/wine*.AppImage",
+        "~/.local/bin/Proton/wine*.AppImage",
+        "~/bin/Proton/wine*.AppImage"
+      ]
+    },
+    "PUNES": {
+      "system_path": [
+        "punes"
+      ],
+      "static_path": [
+        "~/Applications/punes/punes",
+        "~/.local/share/applications/punes/punes",
+        "~/.local/bin/punes/punes",
+        "~/bin/punes/punes",
+        "/var/lib/flatpak/exports/bin/io.github.punesemu.puNES",
+        "~/.local/share/flatpak/exports/bin/io.github.punesemu.puNES"
+      ]
+    },
+    "QUASI88": {
+      "system_path": [
+        "quasi88"
+      ],
+      "static_path": [
+        "~/Applications/quasi88/quasi88",
+        "~/.local/share/applications/quasi88/quasi88",
+        "~/.local/bin/quasi88/quasi88",
+        "~/bin/quasi88/quasi88"
+      ]
+    },
+    "REDREAM": {
+      "system_path": [
+        "redream"
+      ],
+      "static_path": [
+        "~/Applications/redream/redream",
+        "~/.local/share/applications/redream/redream",
+        "~/.local/bin/redream/redream",
+        "~/bin/redream/redream"
+      ]
+    },
+    "ROSALIES-MUPEN-GUI": {
+      "system_path": [
+        "RMG",
+        "com.github.Rosalie241.RMG"
+      ],
+      "static_path": [
+        "~/Applications/RMG*.AppImage",
+        "~/.local/share/applications/RMG*.AppImage",
+        "~/.local/bin/RMG*.AppImage",
+        "~/bin/RMG*.AppImage",
+        "/var/lib/flatpak/exports/bin/com.github.Rosalie241.RMG",
+        "~/.local/share/flatpak/exports/bin/com.github.Rosalie241.RMG"
+      ]
+    },
+    "RPCS3": {
+      "system_path": [
+        "rpcs3",
+        "rpcs3-emu.rpcs3",
+        "net.rpcs3.RPCS3"
+      ],
+      "static_path": [
+        "~/Applications/rpcs3*.AppImage",
+        "~/.local/share/applications/rpcs3*.AppImage",
+        "~/.local/bin/rpcs3*.AppImage",
+        "~/bin/rpcs3*.AppImage",
+        "/var/lib/flatpak/exports/bin/net.rpcs3.RPCS3",
+        "~/.local/share/flatpak/exports/bin/net.rpcs3.RPCS3"
+      ]
+    },
+    "RUFFLE": {
+      "system_path": [
+        "ruffle"
+      ],
+      "static_path": [
+        "~/Applications/ruffle/ruffle",
+        "~/.local/share/applications/ruffle/ruffle",
+        "~/.local/bin/ruffle/ruffle",
+        "~/bin/ruffle/ruffle",
+        "/var/lib/flatpak/exports/bin/rs.ruffle.Ruffle",
+        "~/.local/share/flatpak/exports/bin/rs.ruffle.Ruffle"
+      ]
+    },
+    "RYUJINX": {
+      "system_path": [
+        "Ryujinx",
+        "Ryujinx.Ava",
+        "ryujinx",
+        "io.github.ryubing.Ryujinx",
+        "org.ryujinx.Ryujinx"
+      ],
+      "static_path": [
+        "~/Applications/*yujinx*.AppImage",
+        "~/.local/share/applications/*yujinx*.AppImage",
+        "~/.local/bin/*yujinx*.AppImage",
+        "~/bin/*yujinx*.AppImage",
+        "/var/lib/flatpak/exports/bin/io.github.ryubing.Ryujinx",
+        "~/.local/share/flatpak/exports/bin/io.github.ryubing.Ryujinx",
+        "/var/lib/flatpak/exports/bin/org.ryujinx.Ryujinx",
+        "~/.local/share/flatpak/exports/bin/org.ryujinx.Ryujinx",
+        "~/Applications/publish/Ryujinx",
+        "~/.local/share/applications/publish/Ryujinx",
+        "~/.local/bin/publish/Ryujinx",
+        "~/bin/publish/Ryujinx",
+        "~/Applications/publish/Ryujinx.Ava",
+        "~/.local/share/applications/publish/Ryujinx.Ava",
+        "~/.local/bin/publish/Ryujinx.Ava",
+        "~/bin/publish/Ryujinx.Ava"
+      ]
+    },
+    "SAMEBOY": {
+      "system_path": [
+        "sameboy",
+        "io.github.sameboy.SameBoy"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/io.github.sameboy.SameBoy",
+        "~/.local/share/flatpak/exports/bin/io.github.sameboy.SameBoy"
+      ]
+    },
+    "SCUMMVM": {
+      "system_path": [
+        "scummvm",
+        "org.scummvm.ScummVM"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/org.scummvm.ScummVM",
+        "~/.local/share/flatpak/exports/bin/org.scummvm.ScummVM"
+      ]
+    },
+    "SDL2TRS": {
+      "system_path": [
+        "sdl2trs"
+      ],
+      "static_path": [
+        "~/Applications/sdl2trs/sdl2trs",
+        "~/.local/share/applications/sdl2trs/sdl2trs",
+        "~/.local/bin/sdl2trs/sdl2trs",
+        "~/bin/sdl2trs/sdl2trs"
+      ]
+    },
+    "SHADPS4": {
+      "system_path": [
+        "shadps4"
+      ],
+      "static_path": [
+        "~/Applications/Shadps4-qt*.AppImage",
+        "~/.local/share/applications/Shadps4-qt*.AppImage",
+        "~/.local/bin/Shadps4-qt*.AppImage",
+        "~/bin/Shadps4-qt*.AppImage",
+        "~/Applications/Shadps4-sdl*.AppImage",
+        "~/.local/share/applications/Shadps4-sdl*.AppImage",
+        "~/.local/bin/Shadps4-sdl*.AppImage",
+        "~/bin/Shadps4-sdl*.AppImage",
+        "~/Applications/shadps4/shadps4",
+        "~/.local/share/applications/shadps4/shadps4",
+        "~/.local/bin/shadps4/shadps4",
+        "~/bin/shadps4/shadps4"
+      ]
+    },
+    "SHADPS4-GUI": {
+      "static_path": [
+        "~/Applications/shadPS4QtLauncher*.AppImage",
+        "~/.local/share/applications/shadPS4QtLauncher*.AppImage",
+        "~/.local/bin/shadPS4QtLauncher*.AppImage",
+        "~/bin/shadPS4QtLauncher*.AppImage"
+      ]
+    },
+    "SHEEPSHAVER": {
+      "system_path": [
+        "SheepShaver"
+      ],
+      "static_path": [
+        "~/Applications/SheepShaver*.AppImage",
+        "~/.local/share/applications/SheepShaver*.AppImage",
+        "~/.local/bin/SheepShaver*.AppImage",
+        "~/bin/SheepShaver*.AppImage"
+      ]
+    },
+    "SIMCOUPE": {
+      "system_path": [
+        "simcoupe"
+      ],
+      "static_path": [
+        "~/Applications/simcoupe/simcoupe",
+        "~/.local/share/applications/simcoupe/simcoupe",
+        "~/.local/bin/simcoupe/simcoupe",
+        "~/bin/simcoupe/simcoupe"
+      ]
+    },
+    "SIMPLE64": {
+      "system_path": [
+        "simple64-gui",
+        "io.github.simple64.simple64"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/io.github.simple64.simple64",
+        "~/.local/share/flatpak/exports/bin/io.github.simple64.simple64"
+      ]
+    },
+    "SKYEMU": {
+      "system_path": [
+        "SkyEmu"
+      ],
+      "static_path": [
+        "~/Applications/SkyEmu/SkyEmu",
+        "~/.local/share/applications/SkyEmu/SkyEmu",
+        "~/.local/bin/SkyEmu/SkyEmu",
+        "~/bin/SkyEmu/SkyEmu"
+      ]
+    },
+    "SNES9X": {
+      "system_path": [
+        "snes9x",
+        "snes9x-gtk",
+        "com.snes9x.Snes9x"
+      ],
+      "static_path": [
+        "~/Applications/Snes9x*.AppImage",
+        "~/.local/share/applications/Snes9x*.AppImage",
+        "~/.local/bin/Snes9x*.AppImage",
+        "~/bin/Snes9x*.AppImage",
+        "/var/lib/flatpak/exports/bin/com.snes9x.Snes9x",
+        "~/.local/share/flatpak/exports/bin/com.snes9x.Snes9x"
+      ]
+    },
+    "STELLA": {
+      "system_path": [
+        "stella",
+        "io.github.stella_emu.Stella"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/io.github.stella_emu.Stella",
+        "~/.local/share/flatpak/exports/bin/io.github.stella_emu.Stella"
+      ]
+    },
+    "TIC-80": {
+      "system_path": [
+        "tic80",
+        "com.tic80.TIC_80"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/com.tic80.TIC_80",
+        "~/.local/share/flatpak/exports/bin/com.tic80.TIC_80"
+      ]
+    },
+    "VBA-M": {
+      "system_path": [
+        "visualboyadvance-m",
+        "com.vba_m.visualboyadvance-m"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/com.vba_m.visualboyadvance-m",
+        "~/.local/share/flatpak/exports/bin/com.vba_m.visualboyadvance-m"
+      ]
+    },
+    "VICE-X64SC": {
+      "system_path": [
+        "x64sc",
+        "vice-jz.x64sc",
+        "net.sf.VICE"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/net.sf.VICE",
+        "~/.local/share/flatpak/exports/bin/net.sf.VICE"
+      ]
+    },
+    "VICE-XVIC": {
+      "system_path": [
+        "xvic",
+        "vice-jz.xvic"
+      ],
+      "static_path": [
+        "/var/lib/flatpak/exports/bin/net.sf.VICE|flatpak run --command=xvic net.sf.VICE",
+        "~/.local/share/flatpak/exports/bin/net.sf.VICE|flatpak run --command=xvic net.sf.VICE"
+      ]
+    },
+    "VISUAL-PINBALL": {
+      "system_path": [
+        "VPinballX_BGFX",
+        "VPinballX_GL"
+      ],
+      "static_path": [
+        "~/Applications/VPinballX/VPinballX_BGFX",
+        "~/.local/share/applications/VPinballX/VPinballX_BGFX",
+        "~/.local/bin/VPinballX/VPinballX_BGFX",
+        "~/bin/VPinballX/VPinballX_BGFX",
+        "~/Applications/VPinballX/VPinballX_GL",
+        "~/.local/share/applications/VPinballX/VPinballX_GL",
+        "~/.local/bin/VPinballX/VPinballX_GL",
+        "~/bin/VPinballX/VPinballX_GL"
+      ]
+    },
+    "WINE": {
+      "static_path": [
+        "~/Applications/Wine/wine*.AppImage",
+        "~/.local/share/applications/Wine/wine*.AppImage",
+        "~/.local/bin/Wine/wine*.AppImage",
+        "~/bin/Wine/wine*.AppImage"
+      ]
+    },
+    "XROAR": {
+      "system_path": [
+        "xroar"
+      ],
+      "static_path": [
+        "~/Applications/xroar/xroar",
+        "~/.local/share/applications/xroar/xroar",
+        "~/.local/bin/xroar/xroar",
+        "~/bin/xroar/xroar"
+      ]
+    },
+    "YMIR": {
+      "system_path": [
+        "ymir-sdl3",
+        "io.github.strikerx3.ymir"
+      ],
+      "static_path": [
+        "~/Applications/ymir/ymir-sdl3",
+        "~/.local/share/applications/ymir/ymir-sdl3",
+        "~/.local/bin/ymir/ymir-sdl3",
+        "~/bin/ymir/ymir-sdl3",
+        "/var/lib/flatpak/exports/bin/io.github.strikerx3.ymir",
+        "~/.local/share/flatpak/exports/bin/io.github.strikerx3.ymir"
+      ]
+    }
+  }
+}

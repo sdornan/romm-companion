@@ -32,20 +32,33 @@ func loadCoreMap(ctx context.Context, cfg *config.Config) (cores.Map, error) {
 	return m, nil
 }
 
-// platformSlugs is every platform this build knows how to resolve: the core
-// map plus whatever the user wrote a template for.
-func platformSlugs(cfg *config.Config, coreMap cores.Map) []string {
-	slugs := make([]string, 0, len(coreMap)+len(cfg.Templates))
+// newResolver builds the platform-to-emulator resolver for this machine.
+func newResolver(cfg *config.Config, coreMap cores.Map) *emulator.Resolver {
+	r := emulator.NewResolver(cfg.Templates, coreMap)
+	r.RomRoot = cfg.DownloadDir
+	return r
+}
+
+// platformSlugs is every platform this build knows how to resolve: RomM's core
+// map, ES-DE's standalone emulators, and whatever the user wrote a template for.
+func platformSlugs(cfg *config.Config, coreMap cores.Map, r *emulator.Resolver) []string {
+	var slugs []string
 	seen := map[string]bool{}
-	for s := range coreMap {
+	add := func(s string) {
 		if !seen[s] {
 			slugs, seen[s] = append(slugs, s), true
 		}
 	}
-	for s := range cfg.Templates {
-		if !seen[s] {
-			slugs, seen[s] = append(slugs, s), true
+	for s := range coreMap {
+		add(s)
+	}
+	if r.ESDE != nil {
+		for s := range r.ESDE.Systems {
+			add(s)
 		}
+	}
+	for s := range cfg.Templates {
+		add(s)
 	}
 	sort.Strings(slugs)
 	return slugs
@@ -64,8 +77,8 @@ func cmdCapabilities(ctx context.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	r := emulator.NewResolver(cfg.Templates, coreMap)
-	slugs := platformSlugs(cfg, coreMap)
+	r := newResolver(cfg, coreMap)
+	slugs := platformSlugs(cfg, coreMap, r)
 	if r.RetroArch == "" {
 		fmt.Println("RetroArch: not found on PATH")
 	} else {
@@ -108,7 +121,7 @@ func cmdLaunch(ctx context.Context, args []string) error {
 	if err != nil {
 		return err
 	}
-	res := emulator.NewResolver(cfg.Templates, coreMap).Resolve(rom.PlatformSlug)
+	res := newResolver(cfg, coreMap).Resolve(rom.PlatformSlug)
 	if !res.Supported() || res.Kind == "web_player" {
 		return fmt.Errorf("no emulator set up for platform %q on this PC", rom.PlatformSlug)
 	}
