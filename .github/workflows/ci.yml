@@ -20,6 +20,17 @@ jobs:
           GOOS=linux   GOARCH=amd64 go build -o /dev/null ./cmd/romm-companion
           GOOS=windows GOARCH=amd64 go build -o /dev/null ./cmd/romm-companion
           GOOS=darwin  GOARCH=arm64 go build -o /dev/null ./cmd/romm-companion
+  release-config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          version: "~> v2"
+          args: check
   lint:
     runs-on: ubuntu-latest
     steps:

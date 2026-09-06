@@ -22,6 +22,12 @@ Pre-alpha. The pieces that only depend on the local machine and RomM's existing 
 
 The server side (shortcut table, routes, socket event, capability column) is on a RomM branch and is not merged yet, so `run` has nothing to talk to against a stock RomM.
 
+## Install
+
+Grab the archive for your OS from [Releases](https://github.com/sdornan/romm-companion/releases), unpack it, and put `romm-companion` on your PATH. Every tagged release ships Linux, macOS and Windows builds for amd64 and arm64, plus a `checksums.txt` to verify a download against.
+
+The binaries are unsigned, so macOS Gatekeeper and Windows SmartScreen warn on first run. On macOS, clear the quarantine flag with `xattr -d com.apple.quarantine romm-companion`.
+
 ## How `run` works
 
 `run` reports which platforms this PC can play, then waits for work. Nothing polls RomM: the server emits `shortcuts:changed` over Socket.IO when the queue moves, and each (re)connection re-reads the queue so a change made while the socket was down is still picked up.
@@ -42,7 +48,7 @@ There is no tray icon. A tray needs cgo on Linux and macOS, which would cost the
 
 ## Build
 
-Go 1.24 or newer.
+Go 1.25 or newer.
 
 ```sh
 go build ./cmd/romm-companion
@@ -50,6 +56,8 @@ go test ./...
 ```
 
 Cross-compile with `GOOS`/`GOARCH` as usual; there are no cgo dependencies.
+
+To cut a release, push a `v*` tag: GoReleaser builds and publishes the archives. Check the pipeline without tagging with `goreleaser release --snapshot --clean`.
 
 ## Try it
 

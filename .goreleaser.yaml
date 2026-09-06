@@ -1,0 +1,58 @@
+# Cross-compiled, unsigned release archives. Signing needs an Apple Developer
+# account and a Windows code-signing certificate; until then the checksums
+# file is what a user verifies a download against.
+version: 2
+
+builds:
+  - id: romm-companion
+    main: ./cmd/romm-companion
+    binary: romm-companion
+    env:
+      - CGO_ENABLED=0
+    goos: [linux, darwin, windows]
+    goarch: [amd64, arm64]
+    ldflags:
+      - -s -w -X main.version={{ .Version }}
+    # Reproducible builds: stamp the commit time, not the build time.
+    mod_timestamp: "{{ .CommitTimestamp }}"
+
+archives:
+  - id: romm-companion
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - README.md
+      - LICENSE
+      - docs/DESIGN.md
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  use: github
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+
+release:
+  prerelease: auto
+  footer: |
+    ## Install
+
+    Download the archive for your OS, unpack it, and put `romm-companion` on your PATH.
+
+    Binaries are unsigned. macOS Gatekeeper and Windows SmartScreen will warn on
+    first run; on macOS clear the quarantine flag with
+    `xattr -d com.apple.quarantine romm-companion`.
+
+    Verify a download against `checksums.txt`:
+
+    ```sh
+    sha256sum -c checksums.txt --ignore-missing
+    ```
