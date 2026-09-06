@@ -27,7 +27,7 @@ func cmdRun(ctx context.Context, args []string) error {
 		return err
 	}
 	if !cfg.Paired() {
-		return errors.New("not paired; run: romm-companion pair <server-url> <code>")
+		return errNotPaired
 	}
 
 	engine, err := newEngine(ctx, cfg)

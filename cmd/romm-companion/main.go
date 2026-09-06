@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -13,6 +14,9 @@ import (
 
 // version is set by the release build via -ldflags "-X main.version=...".
 var version = "dev"
+
+// errNotPaired is what every command that needs a server says.
+var errNotPaired = errors.New("not paired; run: romm-companion pair <server-url> <code>")
 
 func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)

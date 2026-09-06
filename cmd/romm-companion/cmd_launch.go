@@ -19,7 +19,7 @@ import (
 // cached copy is available so a launch still works offline.
 func loadCoreMap(ctx context.Context, cfg *config.Config) (cores.Map, error) {
 	if cfg.ServerURL == "" {
-		return nil, errors.New("not paired; run: romm-companion pair <server-url> <code>")
+		return nil, errNotPaired
 	}
 	client := romm.New(cfg.ServerURL, cfg.Token, version)
 	m, err := cores.Load(ctx, client)
@@ -109,7 +109,7 @@ func cmdLaunch(ctx context.Context, args []string) error {
 		return err
 	}
 	if !cfg.Paired() {
-		return errors.New("not paired; run: romm-companion pair <server-url> <code>")
+		return errNotPaired
 	}
 	client := romm.New(cfg.ServerURL, cfg.Token, version)
 
