@@ -35,6 +35,8 @@ func run(ctx context.Context, args []string) error {
 		return cmdSteam(ctx, args[1:])
 	case "launch":
 		return cmdLaunch(ctx, args[1:])
+	case "service":
+		return cmdService(ctx, args[1:])
 	case "capabilities":
 		return cmdCapabilities(ctx, args[1:])
 	case "run":
@@ -61,6 +63,8 @@ Commands:
   capabilities               Show which emulator would open each platform on this PC
   launch --rom <id>          Download if needed, launch, and report the play session
   run [--once]               Stay running and apply shortcut changes from RomM
+  service install            Start the companion automatically at login
+  service uninstall|status   Remove or inspect that login entry
   version                    Print the version
 
 Config file: $ROMM_COMPANION_CONFIG or the OS config dir under romm-companion/.

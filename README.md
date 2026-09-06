@@ -18,6 +18,7 @@ Pre-alpha. The pieces that only depend on the local machine and RomM's existing 
 | `capabilities` | Shows which emulator would open each platform on this PC. |
 | `launch --rom <id>` | Downloads the ROM, runs the resolved emulator, records the play session. |
 | `run` | Watches the queue and applies it: downloads, artwork, and the `shortcuts.vdf` write. |
+| `service install` | Registers `run` to start at login. `uninstall` and `status` go with it. |
 
 The server side (shortcut table, routes, socket event, capability column) is on a RomM branch and is not merged yet, so `run` has nothing to talk to against a stock RomM.
 
@@ -32,6 +33,12 @@ Each pass:
 3. **Defer.** If Steam **is** running, nothing is written: Steam reads that file at startup and rewrites it on exit, so a write underneath it is lost. The change stays staged, and `run` re-checks the local Steam process every few seconds until the window opens. That check is a local process read, not a request to RomM, and it only runs while something is actually staged.
 
 Reporting happens after the write, so an interrupted pass leaves rows queued rather than claiming a shortcut that is not there.
+
+## Running it in the background
+
+`romm-companion service install` registers `run` to start at login, using each platform's own mechanism: a systemd user unit on Linux, a launchd agent on macOS, a per-user registry Run entry on Windows. `service status` says where that entry lives and `service uninstall` removes it.
+
+There is no tray icon. A tray needs cgo on Linux and macOS, which would cost the single static binary and the clean cross-compile, so the companion talks through the desktop's own notifications instead: one when a change is ready and Steam needs restarting, one when the library actually changes. Notifications are best-effort, and a headless or locked session never fails a pass.
 
 ## Build
 

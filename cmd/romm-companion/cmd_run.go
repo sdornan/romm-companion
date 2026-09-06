@@ -9,6 +9,7 @@ import (
 
 	"github.com/sdornan/romm-companion/internal/config"
 	"github.com/sdornan/romm-companion/internal/emulator"
+	"github.com/sdornan/romm-companion/internal/notify"
 	"github.com/sdornan/romm-companion/internal/reconcile"
 	"github.com/sdornan/romm-companion/internal/romm"
 	"github.com/sdornan/romm-companion/internal/steam/paths"
@@ -54,8 +55,10 @@ func cmdRun(ctx context.Context, args []string) error {
 	})
 
 	fmt.Fprintf(os.Stderr, "watching %s\n", engine.Client.SocketURL())
+	announce := announcer(ctx)
 	err = engine.Loop(ctx, wake, func(result reconcile.Result, err error) {
 		report(result, err)
+		announce(result, err)
 	})
 	if errors.Is(err, context.Canceled) {
 		return nil
@@ -126,4 +129,60 @@ func newEngine(cfg *config.Config) (*reconcile.Engine, error) {
 			fmt.Fprintf(os.Stderr, format+"\n", args...)
 		},
 	}, nil
+}
+
+// announcer returns a callback that raises a desktop notification when the
+// state changes, and stays quiet otherwise. Without the transition check the
+// "restart Steam" notice would fire on every re-check for as long as Steam
+// stayed open.
+func announcer(ctx context.Context) func(reconcile.Result, error) {
+	wasPending := false
+	return func(result reconcile.Result, err error) {
+		if err != nil {
+			return
+		}
+		if result.Added > 0 || result.Removed > 0 {
+			notifyBest(ctx, "Steam library updated", libraryChangeText(result))
+		}
+		if result.Pending() && !wasPending {
+			notifyBest(ctx, "Restart Steam to apply", pendingText(result.Deferred))
+		}
+		wasPending = result.Pending()
+	}
+}
+
+func libraryChangeText(result reconcile.Result) string {
+	switch {
+	case result.Added > 0 && result.Removed > 0:
+		return fmt.Sprintf("%s added, %s removed.",
+			games(result.Added), games(result.Removed))
+	case result.Added > 0:
+		return fmt.Sprintf("%s added.", games(result.Added))
+	default:
+		return fmt.Sprintf("%s removed.", games(result.Removed))
+	}
+}
+
+func pendingText(n int) string {
+	if n == 1 {
+		return "1 change is ready. It applies the next time Steam restarts."
+	}
+	return fmt.Sprintf(
+		"%d changes are ready. They apply the next time Steam restarts.", n,
+	)
+}
+
+func games(n int) string {
+	if n == 1 {
+		return "1 game"
+	}
+	return fmt.Sprintf("%d games", n)
+}
+
+// notifyBest reports a failed notification once, to stderr, and carries on: a
+// headless or locked session is not an error worth stopping for.
+func notifyBest(ctx context.Context, title, body string) {
+	if err := notify.Send(ctx, title, body); err != nil {
+		fmt.Fprintln(os.Stderr, "desktop notification unavailable:", err)
+	}
 }

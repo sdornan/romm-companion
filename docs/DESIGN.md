@@ -147,7 +147,9 @@ When Play on Desktop arrives, borrow the broker's verbs (launch, save-state, sav
 1. **Server contract** (RomM backend). Model and migration, devices column, four routes, one socket event, tests, known device type.
 2. **Web UI** (RomM frontend v2). GameActions states, device picker, Devices card, i18n, Storybook.
 3. **Companion core** (this repo). Pairing, reconcile loop, VDF writer, artwork, emulator resolution, capability report, launcher, restart handling. Linux first. *Done, except the tray: `run` stages and applies the queue, gated on Steam being closed.*
-4. **Windows and macOS.** Steam discovery per OS, installers, signing, autostart, tray polish.
+4. **Windows and macOS.** Steam discovery per OS, installers, signing, autostart, and telling the user what happened.
+
+*Revised during phase 4:* there is no tray. A tray needs cgo on Linux and macOS, which costs the single static binary and the clean three-OS cross-compile, so the companion registers itself to start at login (systemd user unit, launchd agent, registry Run entry) and reports through the desktop's native notifications instead. The `restart_steam` setting stays out: with a notification telling the user a change is ready, an agent that closes and reopens Steam underneath them is worse, not better.
 
 ## Later: Play on Desktop
 
