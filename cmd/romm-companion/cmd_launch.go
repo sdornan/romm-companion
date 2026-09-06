@@ -29,16 +29,9 @@ var coreMap = map[string][]string{
 	"vb": {"beetle_vb"}, "3do": {"opera"}, "dos": {"dosbox_pure"},
 }
 
-func cmdCapabilities(_ context.Context, args []string) error {
-	fs := newFlagSet("capabilities")
-	if err := fs.Parse(args); err != nil {
-		return err
-	}
-	cfg, err := config.Load()
-	if err != nil {
-		return err
-	}
-	r := emulator.NewResolver(cfg.Templates, coreMap)
+// platformSlugs is every platform this build knows how to resolve: the core
+// map plus whatever the user wrote a template for.
+func platformSlugs(cfg *config.Config) []string {
 	slugs := make([]string, 0, len(coreMap)+len(cfg.Templates))
 	seen := map[string]bool{}
 	for s := range coreMap {
@@ -52,6 +45,20 @@ func cmdCapabilities(_ context.Context, args []string) error {
 		}
 	}
 	sort.Strings(slugs)
+	return slugs
+}
+
+func cmdCapabilities(_ context.Context, args []string) error {
+	fs := newFlagSet("capabilities")
+	if err := fs.Parse(args); err != nil {
+		return err
+	}
+	cfg, err := config.Load()
+	if err != nil {
+		return err
+	}
+	r := emulator.NewResolver(cfg.Templates, coreMap)
+	slugs := platformSlugs(cfg)
 	if r.RetroArch == "" {
 		fmt.Println("RetroArch: not found on PATH")
 	} else {

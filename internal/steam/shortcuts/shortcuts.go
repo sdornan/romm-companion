@@ -105,6 +105,14 @@ func (f *File) Upsert(s Shortcut) uint32 {
 	return s.AppID
 }
 
+// Lookup returns the entry this program owns for romID.
+func (f *File) Lookup(romID int) (Shortcut, bool) {
+	if e := f.find(romID); e != nil {
+		return fromNode(e)
+	}
+	return Shortcut{}, false
+}
+
 // Remove deletes the entry for romID. It reports whether one existed.
 func (f *File) Remove(romID int) bool {
 	for i, e := range f.root.Children {

@@ -4,7 +4,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -39,7 +38,7 @@ func run(ctx context.Context, args []string) error {
 	case "capabilities":
 		return cmdCapabilities(ctx, args[1:])
 	case "run":
-		return errors.New("run: the reconcile loop is not implemented yet")
+		return cmdRun(ctx, args[1:])
 	case "version", "--version", "-v":
 		fmt.Println(version)
 		return nil
@@ -61,7 +60,7 @@ Commands:
   steam list                 List the shortcuts RomM Companion owns in shortcuts.vdf
   capabilities               Show which emulator would open each platform on this PC
   launch --rom <id>          Download if needed, launch, and report the play session
-  run                        Stay running and apply shortcut changes from RomM (not yet)
+  run [--once] [--interval]  Stay running and apply shortcut changes from RomM
   version                    Print the version
 
 Config file: $ROMM_COMPANION_CONFIG or the OS config dir under romm-companion/.

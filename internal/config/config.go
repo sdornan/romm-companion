@@ -23,10 +23,10 @@ type Config struct {
 	// Templates are user overrides of the launch command per platform slug.
 	// They take precedence over every detected emulator.
 	Templates map[string]string `json:"templates,omitempty"`
-	// DeleteOnRemove also deletes the downloaded ROM when a shortcut is removed.
+	// DeleteOnRemove also deletes the downloaded ROM when a shortcut is
+	// removed. Off by default: the download directory may be shared with
+	// another frontend that still lists the game.
 	DeleteOnRemove bool `json:"delete_on_remove"`
-	// RestartSteam relaunches Steam after applying staged changes.
-	RestartSteam bool `json:"restart_steam"`
 }
 
 // Path returns the settings file location, honouring ROMM_COMPANION_CONFIG.

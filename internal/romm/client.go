@@ -124,10 +124,22 @@ type Rom struct {
 	Name         string    `json:"name"`
 	PlatformSlug string    `json:"platform_slug"`
 	FsName       string    `json:"fs_name"`
+	FsNameNoExt  string    `json:"fs_name_no_ext"`
 	Multi        bool      `json:"multi"`
 	Files        []RomFile `json:"files"`
 	PathCoverL   string    `json:"path_cover_large"`
 	SGDBID       int       `json:"sgdb_id"`
+}
+
+// Title is what the shortcut is called in Steam.
+func (r *Rom) Title() string {
+	if r.Name != "" {
+		return r.Name
+	}
+	if r.FsNameNoExt != "" {
+		return r.FsNameNoExt
+	}
+	return r.FsName
 }
 
 // GetRom fetches one ROM by id.
@@ -178,6 +190,44 @@ func (c *Client) DownloadFile(ctx context.Context, f RomFile, destDir string) (s
 		return "", err
 	}
 	return dest, os.Rename(tmp, dest)
+}
+
+// resourcesPath is where the web server exposes cover art, as a sibling of
+// /api rather than a route on it.
+const resourcesPath = "/assets/romm/resources/"
+
+// DownloadCover fetches a rom's large cover. A rom with no cover, or a server
+// that will not serve it, yields nil rather than an error: artwork is
+// best-effort and must never fail an add.
+func (c *Client) DownloadCover(ctx context.Context, rom *Rom) []byte {
+	if rom.PathCoverL == "" {
+		return nil
+	}
+	req, err := http.NewRequestWithContext(
+		ctx, http.MethodGet, c.BaseURL+resourcesPath+rom.PathCoverL, nil,
+	)
+	if err != nil {
+		return nil
+	}
+	// Covers are static files, so the token is usually ignored; sending it
+	// costs nothing and covers deployments that do gate them.
+	if c.Token != "" {
+		req.Header.Set("Authorization", "Bearer "+c.Token)
+	}
+	resp, err := c.HTTP.Do(req)
+	if err != nil {
+		return nil
+	}
+	defer func() { _ = resp.Body.Close() }()
+	if resp.StatusCode/100 != 2 {
+		return nil
+	}
+	// Cap the read so a misrouted response cannot exhaust memory.
+	data, err := io.ReadAll(io.LimitReader(resp.Body, 16<<20))
+	if err != nil {
+		return nil
+	}
+	return data
 }
 
 // ---- play sessions ----

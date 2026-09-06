@@ -146,7 +146,7 @@ When Play on Desktop arrives, borrow the broker's verbs (launch, save-state, sav
 
 1. **Server contract** (RomM backend). Model and migration, devices column, four routes, one socket event, tests, known device type.
 2. **Web UI** (RomM frontend v2). GameActions states, device picker, Devices card, i18n, Storybook.
-3. **Companion core** (this repo). Pairing, reconcile loop, VDF writer, artwork, emulator resolution, capability report, launcher, restart handling. Linux first.
+3. **Companion core** (this repo). Pairing, reconcile loop, VDF writer, artwork, emulator resolution, capability report, launcher, restart handling. Linux first. *Done, except the tray: `run` stages and applies the queue, gated on Steam being closed.*
 4. **Windows and macOS.** Steam discovery per OS, installers, signing, autostart, tray polish.
 
 ## Later: Play on Desktop
