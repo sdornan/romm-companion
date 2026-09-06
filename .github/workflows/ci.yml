@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go vet ./...
+      - run: go test -race ./...
+      - name: Cross-compile
+        run: |
+          GOOS=linux   GOARCH=amd64 go build -o /dev/null ./cmd/romm-companion
+          GOOS=windows GOARCH=amd64 go build -o /dev/null ./cmd/romm-companion
+          GOOS=darwin  GOARCH=arm64 go build -o /dev/null ./cmd/romm-companion
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: golangci/golangci-lint-action@v8
+        with:
+          version: latest
