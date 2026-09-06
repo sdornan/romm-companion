@@ -50,7 +50,9 @@ func (c *Client) Watch(ctx context.Context, onChange func()) error {
 	client.SetHandshakeData(map[string]any{"token": c.Token})
 	client.On("shortcuts:changed", func(...any) { onChange() })
 
-	if err := client.Connect(ctx); err != nil {
+	// Fire on every connection too: a queue that moved while the socket was
+	// down produces no event, so the reconnect itself is the signal to look.
+	if err := client.Connect(ctx, func(any) { onChange() }); err != nil {
 		return err
 	}
 	defer func() { _ = client.Close() }()

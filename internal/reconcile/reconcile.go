@@ -60,6 +60,18 @@ type Engine struct {
 	SteamRunning func() (bool, error)
 	// Logf receives progress lines; nil discards them.
 	Logf func(format string, args ...any)
+
+	// runFn overrides Run for the loop's own tests, which are about waiting
+	// rather than about the queue.
+	runFn func(context.Context) (Result, error)
+}
+
+// pass performs one reconcile, through the test seam when one is installed.
+func (e *Engine) pass(ctx context.Context) (Result, error) {
+	if e.runFn != nil {
+		return e.runFn(ctx)
+	}
+	return e.Run(ctx)
 }
 
 // Result counts what one pass did, for the caller's log and the tray badge.

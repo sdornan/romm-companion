@@ -15,15 +15,9 @@ import (
 	"github.com/sdornan/romm-companion/internal/steam/process"
 )
 
-// pollInterval is the backstop for the socket: the server nudges this device
-// when its queue moves, but a missed event or a dropped connection must not
-// strand a change, and a staged change also has to notice Steam closing.
-const pollInterval = 30 * time.Second
-
 func cmdRun(ctx context.Context, args []string) error {
 	fs := newFlagSet("run")
 	once := fs.Bool("once", false, "make one pass and exit")
-	interval := fs.Duration("interval", pollInterval, "how often to re-check the queue")
 	if err := fs.Parse(args); err != nil {
 		return err
 	}
@@ -42,11 +36,12 @@ func cmdRun(ctx context.Context, args []string) error {
 	}
 
 	if *once {
-		return runPass(ctx, engine)
+		report(engine.Run(ctx))
+		return nil
 	}
 
-	// The socket only ever says "look again", so it feeds the same channel the
-	// ticker does and a burst collapses into one pass.
+	// The server's event says only "look again", so it and the reconnect
+	// callback feed one channel, and a burst collapses into a single pass.
 	wake := make(chan struct{}, 1)
 	nudge := func() {
 		select {
@@ -58,27 +53,20 @@ func cmdRun(ctx context.Context, args []string) error {
 		fmt.Fprintln(os.Stderr, "socket:", err)
 	})
 
-	fmt.Fprintf(os.Stderr, "watching %s (polling every %s)\n", cfg.ServerURL, *interval)
-	ticker := time.NewTicker(*interval)
-	defer ticker.Stop()
-
-	for {
-		if err := runPass(ctx, engine); err != nil {
-			fmt.Fprintln(os.Stderr, "pass failed:", err)
-		}
-		select {
-		case <-ctx.Done():
-			return nil
-		case <-wake:
-		case <-ticker.C:
-		}
+	fmt.Fprintf(os.Stderr, "watching %s\n", engine.Client.SocketURL())
+	err = engine.Loop(ctx, wake, func(result reconcile.Result, err error) {
+		report(result, err)
+	})
+	if errors.Is(err, context.Canceled) {
+		return nil
 	}
+	return err
 }
 
-func runPass(ctx context.Context, engine *reconcile.Engine) error {
-	result, err := engine.Run(ctx)
+func report(result reconcile.Result, err error) {
 	if err != nil {
-		return err
+		fmt.Fprintln(os.Stderr, "pass failed:", err)
+		return
 	}
 	if result.Added > 0 || result.Removed > 0 || result.Staged > 0 || result.Failed > 0 {
 		fmt.Fprintf(
@@ -90,10 +78,9 @@ func runPass(ctx context.Context, engine *reconcile.Engine) error {
 	if result.Pending() {
 		fmt.Fprintf(
 			os.Stderr,
-			"%d change(s) ready — restart Steam to apply\n", result.Deferred,
+			"%d change(s) ready — they apply once Steam is closed\n", result.Deferred,
 		)
 	}
-	return nil
 }
 
 // newEngine wires the companion's pieces together and tells RomM what this PC

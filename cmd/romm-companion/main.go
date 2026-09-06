@@ -60,7 +60,7 @@ Commands:
   steam list                 List the shortcuts RomM Companion owns in shortcuts.vdf
   capabilities               Show which emulator would open each platform on this PC
   launch --rom <id>          Download if needed, launch, and report the play session
-  run [--once] [--interval]  Stay running and apply shortcut changes from RomM
+  run [--once]               Stay running and apply shortcut changes from RomM
   version                    Print the version
 
 Config file: $ROMM_COMPANION_CONFIG or the OS config dir under romm-companion/.

@@ -23,13 +23,13 @@ The server side (shortcut table, routes, socket event, capability column) is on 
 
 ## How `run` works
 
-`run` reports which platforms this PC can play, then waits for work. RomM emits `shortcuts:changed` over Socket.IO when the queue moves, and `run` also re-checks on a timer (`--interval`, 30s by default) so a dropped connection or a missed event costs latency rather than a lost change.
+`run` reports which platforms this PC can play, then waits for work. Nothing polls RomM: the server emits `shortcuts:changed` over Socket.IO when the queue moves, and each (re)connection re-reads the queue so a change made while the socket was down is still picked up.
 
 Each pass:
 
 1. **Stage.** For every `pending_add` row: download the game's files and its cover, write the cover as Steam's vertical capsule, and report `staged`. A platform with no emulator on this PC fails that row alone, with the reason, and the rest of the pass continues.
 2. **Apply.** If Steam is **not** running, open `shortcuts.vdf`, add the staged games and drop the removed ones, write it back atomically, then report `added` or `removed`. Shortcuts this tool did not create are never touched.
-3. **Defer.** If Steam **is** running, nothing is written: Steam reads that file at startup and rewrites it on exit, so a write underneath it is lost. The change stays staged and lands on the next pass after Steam closes.
+3. **Defer.** If Steam **is** running, nothing is written: Steam reads that file at startup and rewrites it on exit, so a write underneath it is lost. The change stays staged, and `run` re-checks the local Steam process every few seconds until the window opens. That check is a local process read, not a request to RomM, and it only runs while something is actually staged.
 
 Reporting happens after the write, so an interrupted pass leaves rows queued rather than claiming a shortcut that is not there.
 
