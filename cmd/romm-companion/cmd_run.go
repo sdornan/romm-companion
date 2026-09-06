@@ -31,7 +31,7 @@ func cmdRun(ctx context.Context, args []string) error {
 		return errors.New("not paired; run: romm-companion pair <server-url> <code>")
 	}
 
-	engine, err := newEngine(cfg)
+	engine, err := newEngine(ctx, cfg)
 	if err != nil {
 		return err
 	}
@@ -88,7 +88,7 @@ func report(result reconcile.Result, err error) {
 
 // newEngine wires the companion's pieces together and tells RomM what this PC
 // can play, so the web UI can refuse an add before the user presses the button.
-func newEngine(cfg *config.Config) (*reconcile.Engine, error) {
+func newEngine(ctx context.Context, cfg *config.Config) (*reconcile.Engine, error) {
 	install, err := paths.Find(cfg.SteamRoot)
 	if err != nil {
 		return nil, fmt.Errorf("%w (set steam_root in the config file to override)", err)
@@ -106,14 +106,18 @@ func newEngine(cfg *config.Config) (*reconcile.Engine, error) {
 		return nil, err
 	}
 
+	coreMap, err := loadCoreMap(ctx, cfg)
+	if err != nil {
+		return nil, err
+	}
 	client := romm.New(cfg.ServerURL, cfg.Token, version)
 	resolver := emulator.NewResolver(cfg.Templates, coreMap)
 
 	// Best-effort: an older server without the column still runs the queue.
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	reportCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
 	defer cancel()
 	if err := client.ReportCapabilities(
-		ctx, cfg.DeviceID, resolver.Capabilities(platformSlugs(cfg)),
+		reportCtx, cfg.DeviceID, resolver.Capabilities(platformSlugs(cfg, coreMap)),
 	); err != nil {
 		fmt.Fprintln(os.Stderr, "could not report playable platforms:", err)
 	}

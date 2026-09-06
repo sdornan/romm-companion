@@ -76,3 +76,24 @@ func TestAPIErrorCarriesStatus(t *testing.T) {
 		t.Fatalf("want APIError 409, got %v", err)
 	}
 }
+
+func TestGetConfigReadsTheCoreMap(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/api/config" {
+			t.Errorf("path %q", r.URL.Path)
+		}
+		_, _ = w.Write([]byte(`{"EJS_CORES":{"snes":["snes9x","bsnes"]},"EJS_NIGHTLY_CORES":{"3ds":["citra"]}}`))
+	}))
+	defer srv.Close()
+
+	out, err := New(srv.URL, "tok", "test").GetConfig(context.Background())
+	if err != nil {
+		t.Fatalf("get config: %v", err)
+	}
+	if got := out.EJSCores["snes"]; len(got) != 2 || got[0] != "snes9x" {
+		t.Errorf("stable cores: %v", got)
+	}
+	if got := out.EJSNightlyCores["3ds"]; len(got) != 1 || got[0] != "citra" {
+		t.Errorf("nightly cores: %v", got)
+	}
+}

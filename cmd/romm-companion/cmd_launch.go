@@ -9,29 +9,32 @@ import (
 	"sort"
 
 	"github.com/sdornan/romm-companion/internal/config"
+	"github.com/sdornan/romm-companion/internal/cores"
 	"github.com/sdornan/romm-companion/internal/emulator"
 	"github.com/sdornan/romm-companion/internal/launcher"
 	"github.com/sdornan/romm-companion/internal/romm"
 )
 
-// coreMap is RomM's platform-to-libretro-core map. Until RomM exposes it over
-// the API (proposed GET /api/config/emulator-cores) a small seed keeps the
-// common platforms working; the server copy replaces this once it exists.
-var coreMap = map[string][]string{
-	"nes": {"fceumm", "nestopia"}, "snes": {"snes9x", "bsnes"}, "n64": {"mupen64plus_next", "parallel_n64"},
-	"gb": {"gambatte"}, "gbc": {"gambatte"}, "gba": {"mgba"}, "nds": {"melonds", "desmume"},
-	"genesis-slash-megadrive": {"genesis_plus_gx", "picodrive"}, "sms": {"genesis_plus_gx"}, "gamegear": {"genesis_plus_gx"},
-	"segacd": {"genesis_plus_gx"}, "sega32": {"picodrive"}, "saturn": {"yabause"},
-	"psx": {"pcsx_rearmed", "mednafen_psx_hw"}, "psp": {"ppsspp"},
-	"arcade": {"fbneo", "mame2003_plus"}, "neogeo": {"fbneo"},
-	"atari2600": {"stella2014"}, "atari7800": {"prosystem"}, "lynx": {"handy"}, "jaguar": {"virtualjaguar"},
-	"pce": {"mednafen_pce"}, "ngp": {"mednafen_ngp"}, "wonderswan": {"mednafen_wswan"},
-	"vb": {"beetle_vb"}, "3do": {"opera"}, "dos": {"dosbox_pure"},
+// loadCoreMap fetches RomM's core map, warning and carrying on when only the
+// cached copy is available so a launch still works offline.
+func loadCoreMap(ctx context.Context, cfg *config.Config) (cores.Map, error) {
+	if cfg.ServerURL == "" {
+		return nil, errors.New("not paired; run: romm-companion pair <server-url> <code>")
+	}
+	client := romm.New(cfg.ServerURL, cfg.Token, version)
+	m, err := cores.Load(ctx, client)
+	if err != nil && m == nil {
+		return nil, fmt.Errorf("could not load the emulator core map: %w", err)
+	}
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "using the cached emulator core map:", err)
+	}
+	return m, nil
 }
 
 // platformSlugs is every platform this build knows how to resolve: the core
 // map plus whatever the user wrote a template for.
-func platformSlugs(cfg *config.Config) []string {
+func platformSlugs(cfg *config.Config, coreMap cores.Map) []string {
 	slugs := make([]string, 0, len(coreMap)+len(cfg.Templates))
 	seen := map[string]bool{}
 	for s := range coreMap {
@@ -48,7 +51,7 @@ func platformSlugs(cfg *config.Config) []string {
 	return slugs
 }
 
-func cmdCapabilities(_ context.Context, args []string) error {
+func cmdCapabilities(ctx context.Context, args []string) error {
 	fs := newFlagSet("capabilities")
 	if err := fs.Parse(args); err != nil {
 		return err
@@ -57,8 +60,12 @@ func cmdCapabilities(_ context.Context, args []string) error {
 	if err != nil {
 		return err
 	}
+	coreMap, err := loadCoreMap(ctx, cfg)
+	if err != nil {
+		return err
+	}
 	r := emulator.NewResolver(cfg.Templates, coreMap)
-	slugs := platformSlugs(cfg)
+	slugs := platformSlugs(cfg, coreMap)
 	if r.RetroArch == "" {
 		fmt.Println("RetroArch: not found on PATH")
 	} else {
@@ -94,6 +101,10 @@ func cmdLaunch(ctx context.Context, args []string) error {
 	client := romm.New(cfg.ServerURL, cfg.Token, version)
 
 	rom, err := client.GetRom(ctx, *romID)
+	if err != nil {
+		return err
+	}
+	coreMap, err := loadCoreMap(ctx, cfg)
 	if err != nil {
 		return err
 	}

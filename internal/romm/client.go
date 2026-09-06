@@ -1,6 +1,6 @@
 // Package romm is a minimal client for the parts of RomM's REST API the
 // companion uses: pairing, device registration, file download, play sessions,
-// and the shortcut queue proposed in docs/DESIGN.md.
+// the emulator core map, and the shortcut queue proposed in docs/DESIGN.md.
 //
 // Routes marked "proposed" do not exist in RomM yet; they are the server
 // contract this project is built against.
@@ -106,6 +106,23 @@ func (c *Client) RegisterDevice(ctx context.Context, d DeviceCreate) (*DeviceCre
 func (c *Client) ReportCapabilities(ctx context.Context, deviceID string, caps map[string]*string) error {
 	body := map[string]any{"launch_capabilities": caps}
 	return c.do(ctx, http.MethodPut, "/api/devices/"+url.PathEscape(deviceID), body, nil)
+}
+
+// ---- server config ----
+
+// ServerConfig is RomM's ConfigResponse, trimmed to the emulator core map.
+type ServerConfig struct {
+	EJSCores        map[string][]string `json:"EJS_CORES"`
+	EJSNightlyCores map[string][]string `json:"EJS_NIGHTLY_CORES"`
+}
+
+// GetConfig fetches the server's public configuration.
+func (c *Client) GetConfig(ctx context.Context) (*ServerConfig, error) {
+	var out ServerConfig
+	if err := c.do(ctx, http.MethodGet, "/api/config", nil, &out); err != nil {
+		return nil, err
+	}
+	return &out, nil
 }
 
 // ---- roms and files ----

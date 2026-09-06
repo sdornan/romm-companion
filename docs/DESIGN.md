@@ -84,7 +84,7 @@ Rows are scoped to a **device**, not a user: a desktop and a laptop want differe
 | `GET /api/shortcuts?device_id=me&status=pending_add,pending_remove,staged` | Companion | `devices.read` | Work queue. Polled on startup and after reconnect. |
 | `PUT /api/devices/{id}` | Companion | `devices.write` | Existing route; gains `launch_capabilities` in the body. |
 | `POST /api/shortcuts/{id}/ack` | Companion | `devices.write` | Body `{status: staged \| added \| removed \| failed, steam_app_id?, error?}`. `removed` deletes the row. |
-| `GET /api/config/emulator-cores` | Companion | none | Later: RomM's platform-to-libretro-core map, once the map moves out of the frontend. |
+| `GET /api/config` | Companion | none | Existing route; gains `EJS_CORES` and `EJS_NIGHTLY_CORES`, RomM's platform-to-libretro-core map. |
 
 One socket event: `shortcuts:changed` carries `{device_id}` only, meaning "go fetch your queue", sent to the device's room and the owner's user room.
 
@@ -105,7 +105,7 @@ With two or more paired devices the button opens a picker. Settings, Devices get
 
 Three layers. Two are answered by data that already exists; the third is a scan of the local machine.
 
-1. **Platform to RetroArch core.** RomM's EmulatorJS core map in `frontend/src/utils/index.ts` already keys libretro core names on platform slugs. Desktop RetroArch uses the same names, so the default command for every browser-playable platform is `retroarch -L <cores>/<core>_libretro.<ext> "<rom>"`. Exposed at `GET /api/config/emulator-cores`.
+1. **Platform to RetroArch core.** RomM's EmulatorJS core map keys libretro core names on platform slugs. Desktop RetroArch uses the same names, so the default command for every browser-playable platform is `retroarch -L <cores>/<core>_libretro.<ext> "<rom>"`. The companion reads the map from `GET /api/config` and caches the last good copy, so a launch still resolves offline.
 2. **Platform to standalone emulator.** ES-DE's `es_systems.xml` covers about 150 systems per OS with labelled alternatives and `%ROM%`, `%EMULATOR_RETROARCH%`, `%CORE_RETROARCH%` placeholders. MIT licensed. The companion ships a translated copy, refreshed each release, joined to RomM slugs by the mapping RomM's ES-DE gamelist exporter already uses.
 3. **Emulator to a path on this PC.** ES-DE's `es_find_rules.xml` lists where each emulator lives per OS. The companion walks the rules on first run and on demand.
 
