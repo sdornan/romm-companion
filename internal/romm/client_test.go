@@ -97,3 +97,36 @@ func TestGetConfigReadsTheCoreMap(t *testing.T) {
 		t.Errorf("nightly cores: %v", got)
 	}
 }
+
+func TestGetSteamArtworkAndImageDownload(t *testing.T) {
+	var srv *httptest.Server
+	srv = httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/api/shortcuts/artwork/7":
+			_, _ = w.Write([]byte(`{"url_hero":"` + srv.URL + `/hero.png","url_logo":null}`))
+		case "/hero.png":
+			_, _ = w.Write([]byte("HERO"))
+		default:
+			w.WriteHeader(http.StatusNotFound)
+		}
+	}))
+	defer srv.Close()
+
+	c := New(srv.URL, "tok", "test")
+	art, err := c.GetSteamArtwork(context.Background(), 7)
+	if err != nil {
+		t.Fatalf("get artwork: %v", err)
+	}
+	if art.URLLogo != "" {
+		t.Errorf("a null slot should read as empty, got %q", art.URLLogo)
+	}
+	if got := c.DownloadImage(context.Background(), art.URLHero); string(got) != "HERO" {
+		t.Errorf("hero download = %q", got)
+	}
+	if got := c.DownloadImage(context.Background(), art.URLLogo); got != nil {
+		t.Errorf("an empty URL should download nothing, got %q", got)
+	}
+	if got := c.DownloadImage(context.Background(), srv.URL+"/missing.png"); got != nil {
+		t.Errorf("a 404 should download nothing, got %q", got)
+	}
+}

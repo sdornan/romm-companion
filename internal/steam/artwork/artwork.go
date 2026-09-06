@@ -1,9 +1,9 @@
 // Package artwork writes Steam's custom library art for a non-Steam shortcut.
 //
 // Steam reads these from userdata/<id>/config/grid/, named by the shortcut's
-// 32-bit app id. Only the vertical capsule is written today: it is the image
-// the library grid shows, and RomM's own cover fills it. Hero and logo need
-// SteamGridDB, which RomM does not yet expose to clients.
+// 32-bit app id. RomM's own cover fills the vertical capsule the library grid
+// shows; the hero and logo on the game's page come from SteamGridDB, which
+// RomM fronts so the companion needs no API key.
 package artwork
 
 import (

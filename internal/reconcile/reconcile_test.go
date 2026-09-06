@@ -65,6 +65,19 @@ func newServer(t *testing.T, queue []romm.Shortcut) *server {
 		s.mu.Unlock()
 		w.WriteHeader(http.StatusOK)
 	})
+	// Registered ahead of the ack catch-all: ServeMux prefers the longer pattern.
+	mux.HandleFunc("/api/shortcuts/artwork/", func(w http.ResponseWriter, _ *http.Request) {
+		_ = json.NewEncoder(w).Encode(map[string]string{
+			"url_hero": s.ts.URL + "/sgdb/hero.png",
+			"url_logo": s.ts.URL + "/sgdb/logo.png",
+		})
+	})
+	mux.HandleFunc("/sgdb/hero.png", func(w http.ResponseWriter, _ *http.Request) {
+		_, _ = w.Write([]byte("HERODATA"))
+	})
+	mux.HandleFunc("/sgdb/logo.png", func(w http.ResponseWriter, _ *http.Request) {
+		_, _ = w.Write([]byte("LOGODATA"))
+	})
 	mux.HandleFunc("/api/roms/7", func(w http.ResponseWriter, _ *http.Request) {
 		_ = json.NewEncoder(w).Encode(romm.Rom{
 			ID:           7,
@@ -175,13 +188,23 @@ func TestAddWritesShortcutAndReportsAppID(t *testing.T) {
 		t.Fatalf("launch options = %q", owned[0].LaunchOptions)
 	}
 
-	// The rom and its cover are on disk.
+	// The rom and all three artwork slots are on disk.
 	if _, err := os.Stat(filepath.Join(engine.Cfg.DownloadDir, "snes", "ct.sfc")); err != nil {
 		t.Fatalf("rom not downloaded: %v", err)
 	}
-	art := filepath.Join(paths.GridDir(userDir), artwork.FileName(owned[0].AppID, artwork.Capsule))
-	if _, err := os.Stat(art); err != nil {
-		t.Fatalf("cover art not written: %v", err)
+	for asset, want := range map[artwork.Asset]string{
+		artwork.Capsule: "PNGDATA",
+		artwork.Hero:    "HERODATA",
+		artwork.Logo:    "LOGODATA",
+	} {
+		path := filepath.Join(paths.GridDir(userDir), artwork.FileName(owned[0].AppID, asset))
+		got, err := os.ReadFile(path)
+		if err != nil {
+			t.Fatalf("%s art not written: %v", asset, err)
+		}
+		if string(got) != want {
+			t.Errorf("%s art = %q want %q", asset, got, want)
+		}
 	}
 
 	acks := s.ackFor(1)

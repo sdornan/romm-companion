@@ -2,7 +2,7 @@
 //
 // The queue is a set of rows the server holds for this device. Each pass:
 //
-//	pending_add    → download the rom and its cover, then report `staged`
+//	pending_add    → download the rom and its artwork, then report `staged`
 //	staged         → waiting for Steam to exit
 //	pending_remove → waiting for Steam to exit
 //
@@ -163,17 +163,38 @@ func (e *Engine) stage(ctx context.Context, row romm.Shortcut) error {
 		return err
 	}
 
-	if cover := e.Client.DownloadCover(ctx, rom); cover != nil {
-		appID := shortcuts.AppID(e.ExePath, rom.Title())
-		if err := artwork.Write(
-			paths.GridDir(e.UserDataDir), appID, artwork.Capsule, cover,
-		); err != nil {
-			e.logf("rom %d: cover art: %v", rom.ID, err)
-		}
-	}
+	e.writeArtwork(ctx, rom)
 
 	e.logf("staged %s", rom.Title())
 	return e.Client.AckShortcut(ctx, row.ID, ackStaged, nil, "")
+}
+
+// writeArtwork fills Steam's three library slots: the grid capsule from RomM's
+// own cover, and the hero and logo RomM fetches from SteamGridDB. All of it is
+// best-effort, since a shortcut with no art still launches.
+func (e *Engine) writeArtwork(ctx context.Context, rom *romm.Rom) {
+	appID := shortcuts.AppID(e.ExePath, rom.Title())
+	gridDir := paths.GridDir(e.UserDataDir)
+
+	write := func(asset artwork.Asset, png []byte) {
+		if png == nil {
+			return
+		}
+		if err := artwork.Write(gridDir, appID, asset, png); err != nil {
+			e.logf("rom %d: %s art: %v", rom.ID, asset, err)
+		}
+	}
+
+	write(artwork.Capsule, e.Client.DownloadCover(ctx, rom))
+
+	art, err := e.Client.GetSteamArtwork(ctx, rom.ID)
+	if err != nil {
+		// An older server has no artwork route; the capsule is enough.
+		e.logf("rom %d: steam artwork: %v", rom.ID, err)
+		return
+	}
+	write(artwork.Hero, e.Client.DownloadImage(ctx, art.URLHero))
+	write(artwork.Logo, e.Client.DownloadImage(ctx, art.URLLogo))
 }
 
 // download fetches every game file into <download dir>/<platform>/ and returns

@@ -84,6 +84,7 @@ Rows are scoped to a **device**, not a user: a desktop and a laptop want differe
 | `GET /api/shortcuts?device_id=me&status=pending_add,pending_remove,staged` | Companion | `devices.read` | Work queue. Polled on startup and after reconnect. |
 | `PUT /api/devices/{id}` | Companion | `devices.write` | Existing route; gains `launch_capabilities` in the body. |
 | `POST /api/shortcuts/{id}/ack` | Companion | `devices.write` | Body `{status: staged \| added \| removed \| failed, steam_app_id?, error?}`. `removed` deletes the row. |
+| `GET /api/shortcuts/artwork/{rom_id}` | Companion | `roms.read` | Steam hero and logo URLs from the rom's `sgdb_id`, so the SteamGridDB key stays on the server. Either may be null. |
 | `GET /api/config` | Companion | none | Existing route; gains `EJS_CORES` and `EJS_NIGHTLY_CORES`, RomM's platform-to-libretro-core map. |
 
 One socket event: `shortcuts:changed` carries `{device_id}` only, meaning "go fetch your queue", sent to the device's room and the owner's user room.

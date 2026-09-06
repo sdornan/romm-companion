@@ -231,6 +231,12 @@ func (c *Client) DownloadCover(ctx context.Context, rom *Rom) []byte {
 	if c.Token != "" {
 		req.Header.Set("Authorization", "Bearer "+c.Token)
 	}
+	return c.readImage(req)
+}
+
+// readImage runs a request and returns the body, capping the read so a
+// misrouted response cannot exhaust memory.
+func (c *Client) readImage(req *http.Request) []byte {
 	resp, err := c.HTTP.Do(req)
 	if err != nil {
 		return nil
@@ -239,12 +245,45 @@ func (c *Client) DownloadCover(ctx context.Context, rom *Rom) []byte {
 	if resp.StatusCode/100 != 2 {
 		return nil
 	}
-	// Cap the read so a misrouted response cannot exhaust memory.
 	data, err := io.ReadAll(io.LimitReader(resp.Body, 16<<20))
 	if err != nil {
 		return nil
 	}
 	return data
+}
+
+// ---- steam artwork ----
+
+// SteamArtwork is RomM's SteamArtworkSchema: the two Steam library slots the
+// ROM's own cover cannot fill. Either may be empty.
+type SteamArtwork struct {
+	URLHero string `json:"url_hero"`
+	URLLogo string `json:"url_logo"`
+}
+
+// GetSteamArtwork asks RomM for a ROM's hero and logo. RomM holds the
+// SteamGridDB key, so the companion never needs one.
+func (c *Client) GetSteamArtwork(ctx context.Context, romID int) (*SteamArtwork, error) {
+	var out SteamArtwork
+	path := fmt.Sprintf("/api/shortcuts/artwork/%d", romID)
+	if err := c.do(ctx, http.MethodGet, path, nil, &out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
+// DownloadImage fetches one artwork URL. Artwork is best-effort, so any
+// failure yields nil rather than an error.
+func (c *Client) DownloadImage(ctx context.Context, url string) []byte {
+	if url == "" {
+		return nil
+	}
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil
+	}
+	req.Header.Set("User-Agent", ClientName+"/"+c.Version)
+	return c.readImage(req)
 }
 
 // ---- play sessions ----

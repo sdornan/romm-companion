@@ -34,7 +34,7 @@ The binaries are unsigned, so macOS Gatekeeper and Windows SmartScreen warn on f
 
 Each pass:
 
-1. **Stage.** For every `pending_add` row: download the game's files and its cover, write the cover as Steam's vertical capsule, and report `staged`. A platform with no emulator on this PC fails that row alone, with the reason, and the rest of the pass continues.
+1. **Stage.** For every `pending_add` row: download the game's files and its artwork, and report `staged`. RomM's cover becomes Steam's vertical capsule; RomM also fronts SteamGridDB for the hero and logo on the game's page, so no API key lives here. A platform with no emulator on this PC fails that row alone, with the reason, and the rest of the pass continues.
 2. **Apply.** If Steam is **not** running, open `shortcuts.vdf`, add the staged games and drop the removed ones, write it back atomically, then report `added` or `removed`. Shortcuts this tool did not create are never touched.
 3. **Defer.** If Steam **is** running, nothing is written: Steam reads that file at startup and rewrites it on exit, so a write underneath it is lost. The change stays staged, and `run` re-checks the local Steam process every few seconds until the window opens. That check is a local process read, not a request to RomM, and it only runs while something is actually staged.
 
