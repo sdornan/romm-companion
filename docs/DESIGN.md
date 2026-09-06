@@ -128,9 +128,9 @@ Single small Go binary with a tray icon. Configuration on a big screen lives in 
 | | Emulator streaming broker | Desktop companion | Playnite plugin |
 | --- | --- | --- | --- |
 | Where the emulator runs | Docker container next to RomM | The user's own PC | The user's PC, via Playnite |
-| What the user sees | Selkies WebRTC stream in the tab | Emulator on that screen, or Steam | Playnite's library |
+| What the user sees | Selkies WebRTC stream in the tab | Steam's library; the emulator launches from Steam | Playnite's library |
 | Who sets it up | Admin, `config.yml` | Any user, by pairing | Any user, in Playnite |
-| How RomM talks to it | Server-to-server HTTP | Socket events to a paired device | Plugin polls REST |
+| How RomM talks to it | Server-to-server HTTP | One socket event, then the device fetches and acks over REST | Plugin polls REST |
 | Solves | Heavy platforms from any browser | Use the gaming PC and its Steam library | RomM inside Playnite |
 
 When Play on Desktop arrives, borrow the broker's verbs (launch, save-state, save-and-exit, volume), not its transport; borrow the Play menu slot from `useGameActions`, which already prefers streaming over EmulatorJS; read the Playnite plugin's device and download code before writing the equivalent here.
