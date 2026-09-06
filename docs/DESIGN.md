@@ -1,10 +1,10 @@
 # RomM Companion design
 
-Revision 4, 6 September 2026. Two buttons on every game in RomM: **Add to Steam** and **Play on Desktop**. Both are served by one small companion app on the gaming PC that downloads the ROM, launches the right emulator, and reports playtime and saves back. Steam shortcuts are one way to reach that launcher; RomM's own Play menu is the other.
+Revision 5, 6 September 2026. An **Add to Steam** button on every game in RomM, served by one small companion app on the gaming PC that downloads the ROM, writes the Steam shortcut and artwork, and launches the right emulator with playtime and saves reported back. Launching from RomM without Steam is deferred to a later phase.
 
 ## Decision
 
-One client, the desktop companion, framed as a RomM desktop agent rather than a Steam tool. It writes Steam's shortcut file itself rather than driving Steam ROM Manager, and it exposes the same launcher directly so games can start from RomM without Steam.
+One client, the desktop companion, and one feature for the first release: Add to Steam. It writes Steam's shortcut file itself rather than driving Steam ROM Manager. Exposing its launcher directly for a "Play on Desktop" button is a later phase, described at the end.
 
 Ruled out:
 
@@ -30,12 +30,11 @@ Steam only re-reads shortcuts on restart. The button therefore promises "Queued 
 2. The companion downloads the ROM and artwork within seconds and shows "1 change ready. Restart Steam to apply." RomM shows "Queued for Steam".
 3. Choose "Apply and restart Steam" from the tray, or quit Steam. The companion writes, Steam comes back with the game, cover, hero and logo. RomM flips to "In Steam".
 4. Press Play in Steam. Saves pull from RomM, the emulator launches, on exit the play session and saves push back.
-5. Or skip Steam: pick **Play on Desktop** in RomM's Play menu. On the same PC the browser hands off to the companion; from a phone the game starts on the desktop.
-6. **Remove from Steam** queues the same way. Deleting the downloaded file is a per-device setting, off by default.
+5. **Remove from Steam** queues the same way. Deleting the downloaded file is a per-device setting, off by default.
 
 ## The server contract
 
-The web UI records intent; the companion reconciles and reports back. RomM already has device registration, token pairing, a socket for push events, per-file download, play session ingest and save sync. This adds one table, one column on devices, six routes and two events.
+The web UI records intent; the companion reconciles and reports back. RomM already has device registration, token pairing, a socket for push events, per-file download, play session ingest and save sync. This adds one table, one column on devices, four routes and one event.
 
 ```
 Web UI ── PUT /api/shortcuts ──> RomM API ── shortcuts:changed ──> Companion
@@ -84,11 +83,10 @@ Rows are scoped to a **device**, not a user: a desktop and a laptop want differe
 | `DELETE /api/shortcuts/{id}` | Web UI | `roms.user.write` | Sets `pending_remove`. Row deleted only after the companion acks. |
 | `GET /api/shortcuts?device_id=me&status=pending_add,pending_remove,staged` | Companion | `devices.read` | Work queue. Polled on startup and after reconnect. |
 | `PUT /api/devices/{id}` | Companion | `devices.write` | Existing route; gains `launch_capabilities` in the body. |
-| `POST /api/devices/{id}/launch` | Web UI | `roms.user.write` | Body `{rom_id}`. Emits `device:launch`. 409 if offline or unsupported platform. |
 | `POST /api/shortcuts/{id}/ack` | Companion | `devices.write` | Body `{status: staged \| added \| removed \| failed, steam_app_id?, error?}`. `removed` deletes the row. |
-| `GET /api/config/emulator-cores` | Companion | none | RomM's platform-to-libretro-core map, so the companion never carries a stale copy. |
+| `GET /api/config/emulator-cores` | Companion | none | Later: RomM's platform-to-libretro-core map, once the map moves out of the frontend. |
 
-Socket events: `shortcuts:changed` carries `{device_id}` only, meaning "go fetch your queue". `device:launch` carries `{rom_id, launch_id}`; its siblings `device:save-state`, `device:save-and-exit` and `device:volume` mirror the streaming broker's verbs for remote control from another device.
+One socket event: `shortcuts:changed` carries `{device_id}` only, meaning "go fetch your queue", sent to the device's room and the owner's user room.
 
 ### Button states in GameActions
 
@@ -102,16 +100,6 @@ Socket events: `shortcuts:changed` carries `{device_id}` only, meaning "go fetch
 | Steam add failed | `failed` | Tooltip shows `error`; click retries. |
 
 With two or more paired devices the button opens a picker. Settings, Devices gets a card per companion: last seen, shortcuts synced, pending changes, default launch mode, "Remove all from Steam".
-
-## Play on Desktop
-
-Two ways in, both ending at `romm-companion launch --rom <id>`.
-
-**Same PC: a `romm://` URL scheme.** The installer registers the scheme (registry key on Windows, `.desktop` entry with `x-scheme-handler/romm` on Linux, `CFBundleURLTypes` on macOS). RomM's Play menu shows **Play on Desktop** whenever the user has a paired companion; clicking opens `romm://play?rom=123&server=<origin>`. The browser asks once whether to open the companion. The companion checks the origin against the one it paired with, downloads if needed, launches. A browser cannot tell whether the handler exists, so after a couple of seconds RomM shows "Nothing opened? Install the companion or choose a device".
-
-**Any device: a launch command.** From a phone, the Play menu lists paired companions that are online and report a capability for the platform. Choosing one calls `POST /api/devices/{id}/launch`; the server emits `device:launch`; the companion launches and posts the play session on exit. RomM shows "Playing on Desktop" while the session is open.
-
-Launching directly gives you the emulator alone. Steam Input, the overlay, Steam's playtime and Remote Play only exist when Steam launches the game, so both paths stay.
 
 ## Emulator mapping
 
@@ -132,7 +120,7 @@ Single small Go binary with a tray icon. Configuration on a big screen lives in 
 - **Steam discovery.** Registry on Windows; `~/.steam/steam`, `~/.local/share/Steam` or the Flatpak path on Linux; `~/Library/Application Support/Steam` on macOS. Most recently used `userdata/<steamid>` wins, user can override.
 - **VDF writer.** Parse the existing file, merge RomM-owned entries by a `romm:<rom_id>` tag, never touch shortcuts it did not create. Temp file and rename. Refuse to write while Steam is running.
 - **Artwork.** RomM's cover as the vertical capsule; hero and logo from SteamGridDB via the stored `sgdb_id`, fetched through RomM so the key stays server-side. Saved as `<appid>p.png`, `<appid>_hero.png`, `<appid>_logo.png` in `grid/`.
-- **Launcher.** One entry point reached three ways: the Steam shortcut exe, the `romm://` scheme, the `device:launch` event. Pulls saves via `/api/sync/negotiate`, runs the command, pushes saves, posts to `/api/play-sessions`.
+- **Launcher.** The Steam shortcut's exe is `romm-companion launch --rom <id>`. Pulls saves via `/api/sync/negotiate`, runs the command, pushes saves, posts to `/api/play-sessions`.
 - **Restart handling.** Watches Steam's process; writes when it exits with changes staged, relaunches if opted in. On Windows waits for the process handle to close, not the window.
 
 ## Relation to streaming and existing clients
@@ -145,7 +133,7 @@ Single small Go binary with a tray icon. Configuration on a big screen lives in 
 | How RomM talks to it | Server-to-server HTTP | Socket events to a paired device | Plugin polls REST |
 | Solves | Heavy platforms from any browser | Use the gaming PC and its Steam library | RomM inside Playnite |
 
-Borrow from the broker its verbs (launch, save-state, save-and-exit, volume), not its transport; borrow the Play menu slot from `useGameActions`, which already prefers streaming over EmulatorJS; read the Playnite plugin's device and download code before writing the equivalent here.
+When Play on Desktop arrives, borrow the broker's verbs (launch, save-state, save-and-exit, volume), not its transport; borrow the Play menu slot from `useGameActions`, which already prefers streaming over EmulatorJS; read the Playnite plugin's device and download code before writing the equivalent here.
 
 ## Open decisions
 
@@ -153,11 +141,14 @@ Borrow from the broker its verbs (launch, save-state, save-and-exit, volume), no
 - **Categories and controller templates.** Extra files Steam reads on restart. Not v1.
 - **Delete the ROM on remove?** Default off, per-device toggle.
 - **Scope naming.** Reuse `roms.user.*` and `devices.*`, or add a `shortcuts.*` pair.
-- **Scheme hardening.** Any web page can open a `romm://` link. The companion accepts only ROM ids from its paired server and prompts on a new origin. Whether a one-time nonce is also needed deserves a security pass before the companion ships.
 
 ## Phasing
 
-1. **Server contract** (RomM backend). Model and migration, devices column, six routes, core-map endpoint, two socket events, tests, known device type.
-2. **Web UI** (RomM frontend v2). GameActions states, Play on Desktop entry with the handler-missing fallback, device picker, Devices card, i18n, Storybook.
-3. **Companion core** (this repo). Pairing, reconcile loop, VDF writer, artwork, emulator resolution, capability report, launcher, `romm://` scheme, socket handler, restart handling. Linux first.
+1. **Server contract** (RomM backend). Model and migration, devices column, four routes, one socket event, tests, known device type.
+2. **Web UI** (RomM frontend v2). GameActions states, device picker, Devices card, i18n, Storybook.
+3. **Companion core** (this repo). Pairing, reconcile loop, VDF writer, artwork, emulator resolution, capability report, launcher, restart handling. Linux first.
 4. **Windows and macOS.** Steam discovery per OS, installers, signing, autostart, tray polish.
+
+## Later: Play on Desktop
+
+Cut from the first release to keep the server change small. The companion's launcher exists regardless, because the Steam shortcut calls it, so this is additive: a `romm://play?rom=123` URL scheme for a browser on the same PC, and a `POST /api/devices/{id}/launch` route that emits `device:launch` to the device room for the couch case. Both need presence tracking (a Redis key refreshed by a heartbeat) so the button can say the PC is offline, and the scheme needs a hardening pass since any web page can open a `romm://` link.

@@ -1,9 +1,8 @@
 # RomM Companion
 
-A small desktop agent that connects a gaming PC to a [RomM](https://github.com/rommapp/romm) server. It does two things:
+A small desktop agent that connects a gaming PC to a [RomM](https://github.com/rommapp/romm) server. Press **Add to Steam** on a game in RomM and it appears in your Steam library on this PC, with artwork, launching through a local emulator. Playtime and saves report back to RomM.
 
-- **Add to Steam.** Press a button in RomM and the game appears in your Steam library on this PC, with artwork, launching through a local emulator.
-- **Play on Desktop.** Launch a RomM game on this PC without Steam, from a browser on the same machine or from your phone.
+Launching from RomM without Steam ("Play on Desktop") is a later phase; see the design.
 
 It runs on Windows, Linux and macOS as a single binary. Full design in [docs/DESIGN.md](docs/DESIGN.md).
 
